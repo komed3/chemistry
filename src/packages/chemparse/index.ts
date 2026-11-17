@@ -14,12 +14,12 @@ export const chemparsePackage: PackageDefinition = {
   icon: FlaskConical,
   githubUrl: 'https://github.com/komed3/chemparse',
   npmUrl: 'https://www.npmjs.com/package/chemparse',
-  installCmd: 'npm install chemparse',
+  installCmd: 'npm i chemparse',
   playground: Playground,
   readme,
   highlights: [
     '118 IUPAC elements + 8 particle symbols',
     'Nested brackets, hydrates, scientific notation',
-    'Caret & Unicode ionic charge parsing',
+    'Caret & Unicode ionic charge parsing'
   ]
 };
