@@ -1,6 +1,6 @@
+import readme from '@/src/packages/chemparse/README.md?raw';
+import { PackageDefinition } from '@/src/types/package';
 import { FlaskConical } from 'lucide-react';
-import readme from './README.md?raw';
-import { PackageDefinition } from './types/package';
 
 
 export const chemparsePackage: PackageDefinition = {
