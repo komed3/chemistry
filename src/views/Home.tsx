@@ -53,6 +53,17 @@ export function Home () {
             { PACKAGES.length } Modules
           </span>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          { PACKAGES.map( ( { id, icon: Icon } ) => (
+            <div
+              key= { id }
+              className= 'flex flex-col justify-between gap-6 p-6 bg-white border border-slate-200 rounded-sm'
+            >
+              ...
+            </div>
+          ) ) }
+        </div>
       </section>
     </div>
   );
