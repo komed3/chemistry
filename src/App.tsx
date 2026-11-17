@@ -10,7 +10,7 @@ export default function App () {
     <>
       <Header />
 
-      <main className= 'min-h-screen'>
+      <main className= 'mx-auto my-12 min-h-screen max-w-7xl px-6'>
         <Routes>
           <Route path= '/' element= { <Home /> } />
           <Route path= '/pkg/:id' element= { <Package /> } />
