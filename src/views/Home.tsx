@@ -75,7 +75,7 @@ export function Home () {
                   </div>
                 </div>
 
-                <p className= 'text-sm leading-relaxed text-slate-600'>{ tagline }</p>
+                <p className= 'text-base leading-relaxed text-slate-600'>{ tagline }</p>
 
                 <ul className= 'space-y-1.5 text-sm text-slate-700'>
                   { highlights.map((item) => (
