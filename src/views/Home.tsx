@@ -78,12 +78,12 @@ export function Home () {
                 <p className= 'text-base leading-relaxed text-slate-600'>{ tagline }</p>
 
                 <ul className= 'space-y-1.5 text-sm text-slate-700'>
-                  { highlights.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <Check className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
-                      <span>{item}</span>
+                  { highlights.map( item => (
+                    <li key= { item } className= 'flex items-start gap-2'>
+                      <Check className= 'shrink-0 mt-0.5 size-4 text-teal-600' />
+                      <span>{ item }</span>
                     </li>
-                  ))}
+                  ) ) }
                 </ul>
               </div>
             </div>
