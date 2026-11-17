@@ -25,3 +25,18 @@
   --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
+
+
+@layer base {
+  html {
+    @apply font-sans scroll-smooth;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  code, pre, kbd, samp {
+    @apply font-mono;
+  }
+}
