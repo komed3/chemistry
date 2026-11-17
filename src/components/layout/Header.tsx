@@ -46,7 +46,7 @@ export function Header () {
             target= '_blank'
             rel= 'noopener noreferrer'
             className= {
-              'px-4 py-1.5 uppercase text-sm font-semibold text-white bg-teal-600 ' +
+              'px-5 py-1.5 uppercase text-xs font-bold text-white bg-teal-600 ' +
               'rounded transition-colors hover:bg-teal-700'
             }
           >
