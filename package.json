@@ -1,4 +1,8 @@
 {
+  "name": "@komed3/chemistry",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "dependencies": {
     "chembalance": "^1.0.0",
     "chemparse": "^1.2.1",
