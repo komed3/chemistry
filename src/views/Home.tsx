@@ -57,7 +57,7 @@ export function Home () {
 
       <section className= 'space-y-6'>
         <div className= 'flex justify-between items-baseline'>
-          <h2 className= 'text-lg font-semibold text-slate-900'>
+          <h2 className= 'text-xl font-semibold text-slate-900'>
             Packages
           </h2>
 
@@ -98,7 +98,9 @@ export function Home () {
                 </ul>
               </div>
 
-              <div className= 'pt-4 space-y-4 border-t border-slate-200'>
+              <hr className= 'border-t border-slate-200' />
+
+              <div className= 'space-y-4'>
                 <div
                   className= {
                     'flex justify-between items-center px-3 py-2 text-xs font-mono text-slate-700 ' +
