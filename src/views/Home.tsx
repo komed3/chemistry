@@ -1,5 +1,5 @@
 import { PACKAGES } from '@/src/packages/registry';
-import { BookOpen, Check, CodeXml, Copy } from 'lucide-react';
+import { BookOpen, Check, CodeXml, Copy, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router';
 
@@ -67,7 +67,7 @@ export function Home () {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-          { PACKAGES.map( ( { id, name, tagline, icon: Icon, version, license, highlights, installCmd } ) => (
+          { PACKAGES.map( ( { id, name, tagline, icon: Icon, version, license, highlights, installCmd, githubUrl, npmUrl } ) => (
             <div
               key= { id }
               className= 'flex flex-col justify-between gap-6 p-6 bg-white border border-slate-200 rounded-sm'
@@ -125,7 +125,7 @@ export function Home () {
                 <div className= 'flex flex-wrap justify-between items-center gap-3'>
                   <div className= 'flex items-center gap-5 text-sm font-medium'>
                     <Link
-                      to={ `/pkg/${ id }` }
+                      to= { `/pkg/${ id }` }
                       className= 'inline-flex items-center gap-2 hover:text-teal-700 transition-colors'
                     >
                       <BookOpen className= 'shrink-0 size-4 text-slate-500' />
@@ -133,12 +133,36 @@ export function Home () {
                     </Link>
 
                     <Link
-                      to={ `/pkg/${ id }/playground` }
+                      to= { `/pkg/${ id }/playground` }
                       className= 'inline-flex items-center gap-2 hover:text-teal-700 transition-colors'
                     >
                       <CodeXml className= 'shrink-0 size-4 text-slate-500' />
                       <span>Playground</span>
                     </Link>
+                  </div>
+
+                  <div className="flex items-center gap-3 text-xs text-slate-500">
+                    <a
+                      href= { githubUrl }
+                      target= '_blank'
+                      rel= 'noreferrer'
+                      className= 'inline-flex items-center gap-1'
+                    >
+                      <span>GitHub</span>
+                      <ExternalLink className= 'shrink-0 size-3' />
+                    </a>
+
+                    <span>/</span>
+
+                    <a
+                      href= { npmUrl }
+                      target= '_blank'
+                      rel= 'noreferrer'
+                      className= 'inline-flex items-center gap-1'
+                    >
+                      <span>npm</span>
+                      <ExternalLink className= 'shrink-0 size-3' />
+                    </a>
                   </div>
                 </div>
               </div>
