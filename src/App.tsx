@@ -2,10 +2,14 @@ import { Footer } from '@/src/components/layout/Footer';
 import { Header } from '@/src/components/layout/Header';
 import { Home } from '@/src/views/Home';
 import { Package } from '@/src/views/Package';
-import { Route, Routes } from 'react-router';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router';
 
 
 export default function App () {
+  const { pathname } = useLocation();
+  useEffect( () => { window.scrollTo( 0, 0 ) }, [ pathname ] );
+
   return (
     <>
       <Header />
