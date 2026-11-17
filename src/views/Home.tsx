@@ -55,12 +55,24 @@ export function Home () {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-          { PACKAGES.map( ( { id, icon: Icon } ) => (
+          { PACKAGES.map( ( { id, name, icon: Icon, version, license } ) => (
             <div
               key= { id }
               className= 'flex flex-col justify-between gap-6 p-6 bg-white border border-slate-200 rounded-sm'
             >
-              ...
+              <div className= 'space-y-4'>
+                <div className= 'flex justify-between items-start gap-4'>
+                  <div className= 'flex items-center gap-3'>
+                    <Icon className= 'shrink-0 size-6 text-teal-600' />
+                    <h3 className= 'text-xl font-semibold text-slate-900'>{ name }</h3>
+                  </div>
+                  <div className= 'pt-1 text-xs font-mono tabular-nums whitespace-nowrap text-slate-500'>
+                    <span>v{ version }</span>
+                    <span className= 'mx-1.5'>—</span>
+                    <span>{ license }</span>
+                  </div>
+                </div>
+              </div>
             </div>
           ) ) }
         </div>
