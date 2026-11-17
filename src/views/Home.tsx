@@ -1,9 +1,19 @@
 import { PACKAGES } from '@/src/packages/registry';
-import { Check } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router';
 
 
 export function Home () {
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const copyInstall = (id: string, cmd: string) => {
+    navigator.clipboard.writeText(cmd).then(() => {
+      setCopiedId(id);
+      setTimeout(() => setCopiedId(null), 1500);
+    });
+  };
+
   return (
     <div className= 'space-y-12'>
       <section className= 'pb-10 space-y-6 border-b border-slate-200'>
@@ -56,7 +66,7 @@ export function Home () {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-          { PACKAGES.map( ( { id, name, tagline, icon: Icon, version, license, highlights } ) => (
+          { PACKAGES.map( ( { id, name, tagline, icon: Icon, version, license, highlights, installCmd } ) => (
             <div
               key= { id }
               className= 'flex flex-col justify-between gap-6 p-6 bg-white border border-slate-200 rounded-sm'
@@ -85,6 +95,29 @@ export function Home () {
                     </li>
                   ) ) }
                 </ul>
+              </div>
+
+              <div className= 'pt-4 space-y-4 border-t border-slate-200'>
+                <div
+                  className= {
+                    'flex justify-between items-center px-3 py-2 text-xs font-mono text-slate-700 ' +
+                    'bg-slate-50 border border-slate-200 rounded-sm'
+                  }
+                >
+                  <span>{ installCmd }</span>
+                  <button
+                    type= 'button'
+                    onClick= { () => copyInstall( id, installCmd ) }
+                    className= 'inline-flex items-center gap-1 text-slate-500 hover:text-teal-700 transition-colors'
+                    aria-label= { `Copy ${ installCmd }` }
+                  >
+                    { copiedId === id ? (
+                      <Check className= 'size-3.5 text-teal-600' />
+                    ) : (
+                      <Copy className= 'size-3.5' />
+                    ) }
+                  </button>
+                </div>
               </div>
             </div>
           ) ) }
