@@ -4,7 +4,7 @@ import { PackageDefinition } from '@/src/types/package';
 import { Scale } from 'lucide-react';
 
 
-export const chemparsePackage: PackageDefinition = {
+export default ( {
   id: 'chembalance',
   name: 'ChemBalance',
   npmName: 'chembalance',
@@ -22,4 +22,4 @@ export const chemparsePackage: PackageDefinition = {
     'Acidic & basic redox auxiliary species',
     'Configurable multi-dimensional search profiles'
   ]
-};
+} ) as const satisfies PackageDefinition;

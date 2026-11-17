@@ -4,7 +4,7 @@ import { PackageDefinition } from '@/src/types/package';
 import { FlaskConical } from 'lucide-react';
 
 
-export const chemparsePackage: PackageDefinition = {
+export default ( {
   id: 'chemparse',
   name: 'ChemParse',
   npmName: 'chemparse',
@@ -22,4 +22,4 @@ export const chemparsePackage: PackageDefinition = {
     'Nested brackets, hydrates, scientific notation',
     'Caret & Unicode ionic charge parsing'
   ]
-};
+} ) as const satisfies PackageDefinition;
