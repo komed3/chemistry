@@ -5,14 +5,15 @@ import { Link } from 'react-router';
 
 
 export function Home () {
-  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [ copiedId, setCopiedId ] = useState< string | null >( null );
 
-  const copyInstall = (id: string, cmd: string) => {
-    navigator.clipboard.writeText(cmd).then(() => {
-      setCopiedId(id);
-      setTimeout(() => setCopiedId(null), 1500);
-    });
+  const copyInstall = ( id: string, cmd: string ) : void => {
+    navigator.clipboard.writeText( cmd ).then( () => {
+      setCopiedId( id );
+      setTimeout( () => setCopiedId( null ), 1500 );
+    } );
   };
+
 
   return (
     <div className= 'space-y-12'>
