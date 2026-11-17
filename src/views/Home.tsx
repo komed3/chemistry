@@ -42,6 +42,18 @@ export function Home () {
           ) ) }
         </div>
       </section>
+
+      <section className= 'space-y-6'>
+        <div className= 'flex justify-between items-baseline'>
+          <h2 className= 'text-lg font-semibold text-slate-900'>
+            Packages
+          </h2>
+
+          <span className= 'text-xs text-slate-500 font-mono tabular-nums'>
+            { PACKAGES.length } Modules
+          </span>
+        </div>
+      </section>
     </div>
   );
 }
