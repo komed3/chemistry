@@ -1,1 +1,20 @@
 @import 'tailwindcss';
+
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 100 900;
+  src: url( ./assets/PlusJakartaSans.woff2 ) format( 'woff2' );
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-weight: 100 900;
+  src: url( ./assets/DMSans.woff2 ) format( 'woff2' );
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-weight: 100 900;
+  src: url( ./assets/JetBrainsMono.woff2 ) format( 'woff2' );
+}
