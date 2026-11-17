@@ -1,4 +1,5 @@
 import { PACKAGES } from '@/src/packages/registry';
+import { Check } from 'lucide-react';
 import { Link } from 'react-router';
 
 
@@ -55,7 +56,7 @@ export function Home () {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-          { PACKAGES.map( ( { id, name, icon: Icon, version, license } ) => (
+          { PACKAGES.map( ( { id, name, tagline, icon: Icon, version, license, highlights } ) => (
             <div
               key= { id }
               className= 'flex flex-col justify-between gap-6 p-6 bg-white border border-slate-200 rounded-sm'
@@ -73,6 +74,17 @@ export function Home () {
                     <span>{ license }</span>
                   </div>
                 </div>
+
+                <p className= 'text-sm leading-relaxed text-slate-600'>{ tagline }</p>
+
+                <ul className= 'space-y-1.5 text-sm text-slate-700'>
+                  { highlights.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ) ) }
