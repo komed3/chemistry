@@ -18,3 +18,10 @@
   font-weight: 100 900;
   src: url( ./assets/JetBrainsMono.woff2 ) format( 'woff2' );
 }
+
+
+@theme {
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
