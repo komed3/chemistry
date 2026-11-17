@@ -6,6 +6,9 @@ export default function App () {
   return (
     <>
       <Header />
+
+      <main className= 'min-h-screen' />
+
       <Footer />
     </>
   );
