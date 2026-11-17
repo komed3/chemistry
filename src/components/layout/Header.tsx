@@ -10,17 +10,17 @@ const BTN = ( isActive: boolean ) =>
 
 export function Header () {
   return (
-    <header className= 'sticky top-0 z-30 bg-white/95 border-b border-slate-200 backdrop-blur-sm'>
+    <header className= 'sticky top-0 z-30 bg-white/95 border-b border-slate-200 backdrop-blur-sm select-none'>
       <div className= 'relative mx-auto max-w-7xl h-14'>
         <div className= 'absolute top-1/2 left-6 -translate-y-1/2 flex items-center gap-4'>
           <img
             src= { flask }
             loading= 'lazy'
             alt= 'Chemistry Tools by komed3'
-            className= 'size-9'
+            className= 'shrink-0 size-9'
           />
 
-          <span className= 'font-semibold'>
+          <span className= 'shrink-0 font-semibold whitespace-nowrap'>
             Chemistry Tools
           </span>
         </div>
