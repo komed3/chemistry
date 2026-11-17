@@ -39,6 +39,20 @@ export function Header () {
             </NavLink>
           ) ) }
         </nav>
+
+        <div className= 'absolute top-1/2 right-6 -translate-y-1/2'>
+          <a
+            href= 'https://ko-fi.com/komed3'
+            target= '_blank'
+            rel= 'noopener noreferrer'
+            className= {
+              'px-4 py-1.5 uppercase text-sm font-semibold text-white bg-teal-600 ' +
+              'rounded transition-colors hover:bg-teal-700'
+            }
+          >
+            <span>Support</span>
+          </a>
+        </div>
       </div>
     </header>
   );
