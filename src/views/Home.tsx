@@ -17,7 +17,13 @@ export function Home () {
         <p className= 'max-w-2xl text-lg leading-relaxed text-slate-600'>
           Open-source npm packages by komed3, supporting ESM and CommonJS projects.
           More about chemical elements, molecules and their properties, visit { ' ' }
-          <a href= 'https://pse-info.de' className= 'text-teal-600 hover:underline'>pse-info.de</a>.
+          <a href= 'https://pse-info.de' className= 'text-teal-600 hover:underline'>
+            pse-info.de
+          </a>
+          { ' ' } and the { ' ' }
+          <a href= 'https://github.com/pseinfo' className= 'text-teal-600 hover:underline'>
+            @pseinfo GitHub organization
+          </a>.
         </p>
 
         <div className= 'flex flex-wrap items-center gap-3 pt-2'>
