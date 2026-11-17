@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react';
+import type { ReactElement } from 'react';
 
 
 export interface PackageDefinition {
@@ -8,10 +9,11 @@ export interface PackageDefinition {
   version: string;
   license: string;
   tagline: string;
+  icon: LucideIcon;
   githubUrl: string;
   npmUrl: string;
   installCmd: string;
-  icon: LucideIcon;
-  highlights: string[];
+  playground: () => ReactElement;
   readme: string;
+  highlights: string[];
 }
