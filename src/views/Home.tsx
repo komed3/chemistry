@@ -1,5 +1,5 @@
 import { PACKAGES } from '@/src/packages/registry';
-import { Check, Copy } from 'lucide-react';
+import { BookOpen, Check, CodeXml, Copy } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router';
 
@@ -120,6 +120,26 @@ export function Home () {
                       <Copy className= 'size-3.5' />
                     ) }
                   </button>
+                </div>
+
+                <div className= 'flex flex-wrap justify-between items-center gap-3'>
+                  <div className= 'flex items-center gap-5 text-sm font-medium'>
+                    <Link
+                      to={ `/pkg/${ id }` }
+                      className= 'inline-flex items-center gap-2 hover:text-teal-700 transition-colors'
+                    >
+                      <BookOpen className= 'shrink-0 size-4 text-slate-500' />
+                      <span>Docs</span>
+                    </Link>
+
+                    <Link
+                      to={ `/pkg/${ id }/playground` }
+                      className= 'inline-flex items-center gap-2 hover:text-teal-700 transition-colors'
+                    >
+                      <CodeXml className= 'shrink-0 size-4 text-slate-500' />
+                      <span>Playground</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
