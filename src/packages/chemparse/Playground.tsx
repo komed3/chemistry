@@ -63,6 +63,22 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
           ) ) }
         </div>
       </div>
+
+      { mode === 'validate' ? (
+        <div
+          className= {
+            'flex items-center gap-3 p-4 text-sm bg-white border border-slate-200 rounded-sm ' +
+            ( valid ? 'text-teal-800' : 'text-rose-800' )
+          }
+        >
+          { valid ? <Check className= 'shrink-0 size-4' /> : <AlertCircle className= 'shrink-0 size-4' /> }
+          <code className= 'font-mono font-medium'>validate()</code>
+          <span>returned</span>
+          <strong className= 'font-mono'>{ String( valid ) }</strong>
+        </div>
+      ) : (
+        <></>
+      ) }
     </>
   );
 }
