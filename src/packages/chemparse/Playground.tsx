@@ -9,6 +9,35 @@ const TABS = {
 } as const;
 
 
+const INPUT =
+  'block w-full px-3.5 py-2.5 text-base font-mono text-slate-900 bg-white border ' +
+  'border-slate-300 rounded-sm focus:outline-none focus:border-teal-600';
+
+
+function Parse () {
+  const [ formula, setFormula ] = useState( 'CuSO4·5H2O' );
+
+  return (
+    <>
+      <div className= 'space-y-3'>
+        <label htmlFor= 'chemparse-input' className= 'block text-xs font-medium text-slate-700'>
+          Chemical Formula or Particle Expression
+        </label>
+
+        <input
+          id= 'chemparse-input'
+          type= 'text'
+          value= { formula }
+          onChange={ e => setFormula( e.target.value ) }
+          placeholder= 'e.g. CuSO4·5H2O, K4[Fe(CN)6], SO4^2-, 3α'
+          className= { INPUT }
+        />
+      </div>
+    </>
+  );
+}
+
+
 function Symbols () {
   return (
     <>
@@ -58,6 +87,7 @@ export function Playground () {
     <div className= 'space-y-8'>
       <Tabs { ...{ tabs: TABS, tab, setTab } } />
 
+      { ( tab === 'parse' || tab === 'validate' ) && <Parse /> }
       { tab === 'symbols' && <Symbols /> }
     </div>
   );
