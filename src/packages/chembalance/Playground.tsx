@@ -1,5 +1,7 @@
 import { Tabs } from '@/src/components/ui/Tabs';
-import { useState } from 'react';
+import type { ChemicalEquation } from 'chembalance';
+import { parse } from 'chembalance';
+import { useMemo, useState } from 'react';
 
 
 interface Result< T > {
@@ -39,6 +41,14 @@ function CheckEquation ( { mode }: { mode: 'isBalanced' | 'validate' } ) {
 
 
 function Parse () {
+  const [ equation, setEquation ] = useState< string >( PRESETS[ 0 ] );
+
+  const { data, error } = useMemo< Result< ChemicalEquation > >( () => {
+    try { return { data: parse( equation ) } }
+    catch ( err ) { return { error: err instanceof Error ? err.message : String( err ) } }
+  }, [ equation ] );
+
+
   return (
     <></>
   );
