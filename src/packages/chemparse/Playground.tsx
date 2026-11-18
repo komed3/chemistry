@@ -1,6 +1,8 @@
 import { Tabs } from '@/src/components/Tabs';
-import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS } from 'chemparse';
-import { useState } from 'react';
+import type { ChemParseResult } from 'chemparse';
+import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, parse } from 'chemparse';
+import { AlertCircle, Check } from 'lucide-react';
+import { useMemo, useState } from 'react';
 
 
 const TABS = {
@@ -18,8 +20,14 @@ const INPUT =
   'border-slate-300 rounded-sm focus:outline-none focus:border-teal-600';
 
 
-function Parse () {
+function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
   const [ formula, setFormula ] = useState( 'CuSO4·5H2O' );
+
+  const { data, valid, error } = useMemo< { data?: ChemParseResult; valid: boolean; error?: string } >( () => {
+    try { return { data: parse( formula ), valid: true } }
+    catch ( err ) { return { valid: false, error: err instanceof Error ? err.message : String( err ) } }
+  }, [ formula, mode ] );
+
 
   return (
     <>
@@ -105,11 +113,12 @@ function Symbols () {
 export function Playground () {
   const [ tab, setTab ] = useState< keyof typeof TABS >( 'parse' );
 
+
   return (
     <div className= 'space-y-8'>
       <Tabs { ...{ tabs: TABS, tab, setTab } } />
 
-      { ( tab === 'parse' || tab === 'validate' ) && <Parse /> }
+      { ( tab === 'parse' || tab === 'validate' ) && <Parse mode= { tab } /> }
       { tab === 'symbols' && <Symbols /> }
     </div>
   );
