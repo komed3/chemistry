@@ -44,8 +44,8 @@ export function Overview () {
               key= { id }
               to= { `/pkg/${ id }` }
               className= {
-                'inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-white bg-teal-600 ' +
-                'rounded-sm transition-colors hover:bg-teal-700'
+                'inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-white ' +
+                'bg-teal-600 rounded transition-colors hover:bg-teal-700'
               }
             >
               <Icon className= 'shrink-0 size-4' />
@@ -70,7 +70,7 @@ export function Overview () {
           { PACKAGES.map( ( { id, name, tagline, icon: Icon, version, license, highlights, installCmd, githubUrl, npmUrl } ) => (
             <div
               key= { id }
-              className= 'flex flex-col justify-between gap-6 p-6 bg-white border border-slate-200 rounded-sm'
+              className= 'flex flex-col justify-between gap-6 p-6 bg-white border border-slate-200 rounded'
             >
               <div className= 'space-y-4'>
                 <div className= 'flex justify-between items-center gap-4'>
@@ -103,8 +103,8 @@ export function Overview () {
               <div className= 'space-y-4'>
                 <div
                   className= {
-                    'flex justify-between items-center px-3 py-2 text-xs font-mono text-slate-700 ' +
-                    'bg-slate-50 border border-slate-200 rounded-sm'
+                    'flex justify-between items-center px-3 py-2 text-xs font-mono ' +
+                    'text-slate-700 bg-slate-50 border border-slate-200 rounded'
                   }
                 >
                   <span>{ installCmd }</span>
