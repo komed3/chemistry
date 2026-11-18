@@ -2,7 +2,7 @@ import { Tabs } from '@/src/components/Tabs';
 import { formatCharge } from '@/src/lib/formatter';
 import type { ChemParseResult } from 'chemparse';
 import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, compareMany, diffMany, parse } from 'chemparse';
-import { AlertCircle, Check, Trash2 } from 'lucide-react';
+import { AlertCircle, Check, Plus, Trash2 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 
@@ -44,8 +44,8 @@ const MULTI_PRESETS = {
 
 
 const INPUT =
-  'block w-full px-3.5 py-2.5 text-base font-mono text-slate-900 bg-white border ' +
-  'border-slate-300 rounded focus:outline-none focus:border-teal-600';
+  'block w-full px-3.5 py-2 text-base font-mono text-slate-900 bg-white border ' +
+  'border-slate-200 rounded focus:outline-none focus:border-teal-600';
 
 
 function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
@@ -230,10 +230,10 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
         </div>
 
         <div className= 'space-y-2'>
-          { formulas.map( ( val, i ) => (
-            <div key= { i } className= 'flex items-center gap-2'>
+          { formulas.map( ( val, idx ) => (
+            <div key= { idx } className= 'flex items-center gap-2'>
               <span className= 'shrink-0 w-16 text-xs font-mono text-slate-500'>
-                { mode === 'diff' && i === 0 ? 'base' : `#${ i + 1 }` }
+                { mode === 'diff' && idx === 0 ? 'base' : `#${ idx + 1 }` }
               </span>
 
               <input
@@ -241,7 +241,7 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
                 value= { val }
                 onChange= { e => {
                   const next = [ ...formulas ];
-                  next[ i ] = e.target.value;
+                  next[ idx ] = e.target.value;
                   setFormulas( next );
                 } }
                 className= { INPUT }
@@ -250,11 +250,11 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
               { formulas.length > 2 && (
                 <button
                   type= 'button'
-                  onClick= { () => setFormulas( formulas.filter( ( _, i ) => i !== i ) ) }
+                  onClick= { () => setFormulas( formulas.filter( ( _, i ) => i !== idx ) ) }
                   aria-label= 'Remove formula'
                   className= {
-                    'p-2 text-slate-500 bg-white border border-slate-200 ' +
-                    'rounded-sm transition-colors hover:text-rose-600'
+                    'p-3 text-slate-500 bg-white border border-slate-200 ' +
+                    'rounded transition-colors hover:text-rose-600'
                   }
                 >
                   <Trash2 className= 'size-4' />
@@ -263,6 +263,18 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
             </div>
           ) ) }
         </div>
+
+        <button
+          type= 'button'
+          onClick= { () => setFormulas( [ ...formulas, '' ] ) }
+          className= {
+            'inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-slate-600 bg-white ' +
+            'border border-slate-200 rounded transition-colors hover:text-slate-900'
+          }
+        >
+          <Plus className= 'shrink-0 size-3.5' />
+          <span>Add formula</span>
+        </button>
       </div>
     </>
   );
