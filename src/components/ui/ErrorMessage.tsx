@@ -7,7 +7,7 @@ interface ErrorMessageProps {
 }
 
 
-export function ErrorMessage ( { error, label = 'Equation Error' }: ErrorMessageProps ) {
+export function ErrorMessage ( { error, label = 'Error' }: ErrorMessageProps ) {
   return (
     <div className= 'flex items-start gap-3 p-4 text-sm text-rose-800 bg-white border border-slate-200 rounded'>
       <AlertCircle className= 'shrink-0 size-4' />
