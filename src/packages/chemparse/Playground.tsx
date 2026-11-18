@@ -21,7 +21,7 @@ const INPUT =
   'border-slate-300 rounded focus:outline-none focus:border-teal-600';
 
 
-function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
+function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
   const [ formula, setFormula ] = useState( 'CuSO4·5H2O' );
 
   const { data, valid, error } = useMemo< { data?: ChemParseResult; valid: boolean; error?: string } >( () => {
@@ -167,6 +167,13 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
 }
 
 
+function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
+  return (
+    <></>
+  );
+}
+
+
 function Symbols () {
   return (
     <>
@@ -217,7 +224,8 @@ export function Playground () {
     <div className= 'space-y-8'>
       <Tabs { ...{ tabs: TABS, tab, setTab } } />
 
-      { ( tab === 'parse' || tab === 'validate' ) && <Parse mode= { tab } /> }
+      { ( tab === 'parse' || tab === 'validate' ) && <Single mode= { tab } /> }
+      { ( tab === 'compare' || tab === 'diff' ) && <Multi mode= { tab } /> }
       { tab === 'symbols' && <Symbols /> }
     </div>
   );
