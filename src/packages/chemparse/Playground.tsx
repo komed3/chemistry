@@ -1,6 +1,6 @@
 import { ErrorMessage } from '@/src/components/ui/ErrorMessage';
+import { FormulaInput } from '@/src/components/ui/FormulaInput';
 import { JsonDump } from '@/src/components/ui/JsonDump';
-import { Presets } from '@/src/components/ui/Presets';
 import { ResultGrid } from '@/src/components/ui/ResultGrid';
 import { ResultTable } from '@/src/components/ui/ResultTable';
 import { Tabs } from '@/src/components/ui/Tabs';
@@ -8,7 +8,6 @@ import { Validation } from '@/src/components/ui/Validation';
 import { formatCharge } from '@/src/lib/formatter';
 import type { ChemParseResult } from 'chemparse';
 import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, compareMany, diffMany, parse } from 'chemparse';
-import { Plus, Trash2 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 
@@ -49,11 +48,6 @@ const MULTI_PRESETS = {
 } as const;
 
 
-const INPUT =
-  'block w-full px-3.5 py-2 text-base font-mono text-slate-900 bg-white border ' +
-  'border-slate-200 rounded focus:outline-none focus:border-teal-600';
-
-
 function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
   const [ formula, setFormula ] = useState( 'CuSO4·5H2O' );
 
@@ -65,27 +59,14 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
 
   return (
     <>
-      <div className= 'space-y-3'>
-        <label htmlFor= 'chemparse-input' className= 'block text-xs font-medium text-slate-700'>
-          Chemical Formula or Particle Expression
-        </label>
-
-        <input
-          id= 'chemparse-input'
-          type= 'text'
-          value= { formula }
-          onChange= { e => setFormula( e.target.value ) }
-          placeholder= 'e.g. CuSO4·5H2O, K4[Fe(CN)6], SO4^2-, 3α'
-          className= { INPUT }
-        />
-
-        <Presets
-          presets= { SINGLE_PRESETS }
-          active= { formula }
-          setActive= { setFormula }
-          label= 'Examples:'
-        />
-      </div>
+      <FormulaInput
+        mode= 'single'
+        value= { formula }
+        setValue= { setFormula }
+        presets= { SINGLE_PRESETS }
+        label= 'Chemical Formula or Particle Expression'
+        placeholder= 'e.g. CuSO4·5H2O, K4[Fe(CN)6], SO4^2-, 3α'
+      />
 
       { mode === 'validate' ? (
         <Validation valid= { valid } methodName= 'validate()' />
@@ -136,69 +117,14 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
 
   return (
     <>
-      <div className= 'space-y-3'>
-        <div className= 'flex flex-wrap justify-between items-center gap-2'>
-          <span className= 'text-xs font-medium text-slate-700'>
-            { mode === 'diff' ? 'Base formula (first) minus subsequent formulas' : 'Formulas to compare' }
-          </span>
-
-          <Presets
-            mode= 'multi'
-            presets= { MULTI_PRESETS[ mode ] }
-            active= { formulas }
-            setActive= { setFormulas }
-          />
-        </div>
-
-        <div className= 'space-y-2'>
-          { formulas.map( ( val, idx ) => (
-            <div key= { idx } className= 'flex items-center gap-2'>
-              <span className= 'shrink-0 w-16 text-xs font-mono text-slate-500'>
-                { mode === 'diff' && idx === 0 ? 'base' : `#${ idx + 1 }` }
-              </span>
-
-              <input
-                type= 'text'
-                value= { val }
-                onChange= { e => {
-                  const next = [ ...formulas ];
-                  next[ idx ] = e.target.value;
-                  setFormulas( next );
-                } }
-                className= { INPUT }
-              />
-
-              { formulas.length > 2 && (
-                <button
-                  type= 'button'
-                  onClick= { () => setFormulas( formulas.filter( ( _, i ) => i !== idx ) ) }
-                  aria-label= 'Remove formula'
-                  className= {
-                    'p-3 text-slate-500 bg-white border border-slate-200 ' +
-                    'rounded transition-colors hover:text-rose-600'
-                  }
-                >
-                  <Trash2 className= 'size-4' />
-                </button>
-              ) }
-            </div>
-          ) ) }
-        </div>
-
-        <div className= 'text-right'>
-          <button
-            type= 'button'
-            onClick= { () => setFormulas( [ ...formulas, '' ] ) }
-            className= {
-              'inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-slate-600 bg-white ' +
-              'border border-slate-200 rounded transition-colors hover:text-slate-900'
-            }
-          >
-            <Plus className= 'shrink-0 size-3.5' />
-            <span>Add formula</span>
-          </button>
-        </div>
-      </div>
+      <FormulaInput
+        mode= 'multi'
+        values= { formulas }
+        setValues= { setFormulas }
+        presets= { MULTI_PRESETS[ mode ] }
+        label= { mode === 'diff' ? 'Base formula (first) minus subsequent formulas' : 'Formulas to compare' }
+        baseFirst= { mode === 'diff' }
+      />
 
       { error ? (
         <ErrorMessage error= { error } label= 'Parse Error' />
