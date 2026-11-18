@@ -1,5 +1,6 @@
 import { ErrorMessage } from '@/src/components/ui/ErrorMessage';
 import { JsonDump } from '@/src/components/ui/JsonDump';
+import { Presets } from '@/src/components/ui/Presets';
 import { ResultGrid } from '@/src/components/ui/ResultGrid';
 import { ResultTable } from '@/src/components/ui/ResultTable';
 import { Tabs } from '@/src/components/ui/Tabs';
@@ -78,23 +79,12 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
           className= { INPUT }
         />
 
-        <div className= 'flex flex-wrap items-center gap-1.5'>
-          <span className= 'mr-2 text-xs text-slate-500'>Examples:</span>
-
-          { SINGLE_PRESETS.map( preset => (
-            <button
-              key={ preset }
-              type= 'button'
-              onClick= { () => setFormula( preset ) }
-              className= {
-                'px-2 py-1 text-xs font-mono bg-white border rounded transition-colors ' +
-                ( formula === preset ? 'border-slate-900' : 'text-slate-600 border-slate-200' )
-              }
-            >
-              { preset }
-            </button>
-          ) ) }
-        </div>
+        <Presets
+          presets= { SINGLE_PRESETS }
+          active= { formula }
+          setActive= { setFormula }
+          label= 'Examples:'
+        />
       </div>
 
       { mode === 'validate' ? (
@@ -152,21 +142,12 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
             { mode === 'diff' ? 'Base formula (first) minus subsequent formulas' : 'Formulas to compare' }
           </span>
 
-          <div className= 'flex flex-wrap items-center gap-1.5'>
-            { MULTI_PRESETS[ mode ].map( ( { label, values } ) => (
-              <button
-                key= { label }
-                type= 'button'
-                onClick= { () => setFormulas( values as unknown as string[] ) }
-                className= {
-                  'px-2 py-1 text-xs font-mono text-slate-600 bg-white border ' +
-                  'border-slate-200 rounded transition-colors hover:text-slate-900'
-                }
-              >
-                { label }
-              </button>
-            ) ) }
-          </div>
+          <Presets
+            mode= 'multi'
+            presets= { MULTI_PRESETS[ mode ] }
+            active= { formulas }
+            setActive= { setFormulas }
+          />
         </div>
 
         <div className= 'space-y-2'>
