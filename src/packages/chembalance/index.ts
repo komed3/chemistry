@@ -15,6 +15,7 @@ export default ( {
   icon: Scale,
   githubUrl: 'https://github.com/komed3/chembalance',
   npmUrl: 'https://www.npmjs.com/package/chembalance',
+  jsDelivrUrl: 'https://jsdelivr.com/package/npm/chembalance',
   installCmd: 'npm i chembalance',
   playground: Playground,
   readme,

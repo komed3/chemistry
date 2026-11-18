@@ -15,6 +15,7 @@ export default ( {
   icon: FlaskConical,
   githubUrl: 'https://github.com/komed3/chemparse',
   npmUrl: 'https://www.npmjs.com/package/chemparse',
+  jsDelivrUrl: 'https://jsdelivr.com/package/npm/chemparse',
   installCmd: 'npm i chemparse',
   playground: Playground,
   readme,
