@@ -54,7 +54,7 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
   const { data, valid, error } = useMemo< SingleResult >( () => {
     try { return { data: parse( formula ), valid: true } }
     catch ( err ) { return { valid: false, error: err instanceof Error ? err.message : String( err ) } }
-  }, [ formula, mode ] );
+  }, [ formula ] );
 
 
   return (
