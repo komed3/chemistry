@@ -2,7 +2,7 @@ import { Tabs } from '@/src/components/Tabs';
 import { formatCharge } from '@/src/lib/formatter';
 import type { ChemParseResult } from 'chemparse';
 import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, compareMany, diffMany, parse } from 'chemparse';
-import { AlertCircle, Check } from 'lucide-react';
+import { AlertCircle, Check, Trash2 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 
@@ -227,6 +227,41 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
               </button>
             ) ) }
           </div>
+        </div>
+
+        <div className= 'space-y-2'>
+          { formulas.map( ( val, i ) => (
+            <div key= { i } className= 'flex items-center gap-2'>
+              <span className= 'shrink-0 w-16 text-xs font-mono text-slate-500'>
+                { mode === 'diff' && i === 0 ? 'base' : `#${ i + 1 }` }
+              </span>
+
+              <input
+                type= 'text'
+                value= { val }
+                onChange= { e => {
+                  const next = [ ...formulas ];
+                  next[ i ] = e.target.value;
+                  setFormulas( next );
+                } }
+                className= { INPUT }
+              />
+
+              { formulas.length > 2 && (
+                <button
+                  type= 'button'
+                  onClick= { () => setFormulas( formulas.filter( ( _, i ) => i !== i ) ) }
+                  aria-label= 'Remove formula'
+                  className= {
+                    'p-2 text-slate-500 bg-white border border-slate-200 ' +
+                    'rounded-sm transition-colors hover:text-rose-600'
+                  }
+                >
+                  <Trash2 className= 'size-4' />
+                </button>
+              ) }
+            </div>
+          ) ) }
         </div>
       </div>
     </>
