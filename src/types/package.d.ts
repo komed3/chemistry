@@ -13,6 +13,7 @@ export interface PackageDefinition {
   icon: LucideIcon;
   githubUrl: string;
   npmUrl: string;
+  jsDelivrUrl?: string;
   installCmd: string;
   playground: () => ReactElement;
   readme: string;
