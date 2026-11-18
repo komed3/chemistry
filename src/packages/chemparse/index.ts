@@ -9,6 +9,7 @@ export default ( {
   name: 'ChemParse',
   npmName: 'chemparse',
   version: '1.2.1',
+  year: '2025/26',
   license: 'MIT',
   tagline: 'Parse, validate, compare, and diff chemical formulas and subatomic particle expressions.',
   icon: FlaskConical,
