@@ -18,6 +18,7 @@ export default defineConfig( () => ( {
           if ( id.includes( 'node_modules' ) ) {
             if ( id.includes( 'chem' ) ) return 'chemistry';
             if ( id.includes( 'lucide' ) ) return 'icons';
+            if ( id.includes( 'prismjs' ) || id.includes( 'syntax' ) ) return 'syntax';
             if ( id.includes( 'react' ) ) return 'react';
             return 'vendor';
           }
