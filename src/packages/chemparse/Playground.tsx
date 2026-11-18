@@ -300,8 +300,10 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
           <span>returned</span>
           <strong className= 'font-mono'>{ String( equal ) }</strong>
         </div>
-      ) : (
-        <></>
+      ) : diffs && (
+        <pre className= 'p-4 text-sm font-mono bg-white border border-slate-200 rounded'>
+          { JSON.stringify( diffs, null, 2 ) }
+        </pre>
       ) }
     </>
   );
