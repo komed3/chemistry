@@ -91,7 +91,7 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
           <div className= 'grid grid-cols-4 gap-4'>
             { [
               [ 'Elements', Object.keys( data.elementCounts ).length ],
-              [ 'Atoms', Object.values( data.elementCounts ).reduce( ( sum, v ) => sum + v, 0 ) ],
+              [ 'Atoms', Object.values( data.elementCounts ).reduce( ( sum, v ) => sum + v, 0 ).toFixed( 0 ) ],
               [ 'Particles', Object.keys( data.particleCounts ?? {} ).length ],
               [ 'Total Charge', formatCharge( data.charge ) ]
             ].map( ( [ label, value ] ) => (
@@ -106,6 +106,10 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
               </div>
             ) ) }
           </div>
+
+          <pre className= 'p-4 text-sm font-mono bg-white border border-slate-200 rounded'>
+            { JSON.stringify( data, null, 2 ) }
+          </pre>
         </>
       ) }
     </>
