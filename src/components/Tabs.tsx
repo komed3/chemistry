@@ -7,7 +7,7 @@ interface TabsProps< T extends string > {
 
 export function Tabs < T extends string > ( { tabs, tab, setTab }: TabsProps< T > ) {
   return (
-    <div className= 'flex flex-wrap items-center gap-4 px-4 border-b border-slate-200'>
+    <div className= 'flex flex-wrap items-center gap-4 border-b border-slate-200'>
       { Object.entries( tabs ).map( ( [ t, label ] ) => (
         <button
           key= { t }
