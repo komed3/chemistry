@@ -3,7 +3,21 @@ import { NotFound } from '@/src/views/NotFound';
 import { Check, CodeXml, ExternalLink } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { Link, useParams } from 'react-router';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import javascript from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';
+import markup from 'react-syntax-highlighter/dist/esm/languages/prism/markup';
+import typescript from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
+import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import remarkGfm from 'remark-gfm';
+
+
+SyntaxHighlighter.registerLanguage( 'javascript', javascript );
+SyntaxHighlighter.registerLanguage( 'markup', markup );
+SyntaxHighlighter.registerLanguage( 'typescript', typescript );
+
+const languageMap: Record< string, string > = {
+  html: 'markup', js: 'javascript', ts: 'typescript'
+} as const;
 
 
 export function Package () {
@@ -141,7 +155,28 @@ export function Package () {
         </div>
 
         <div className= 'readme min-w-0 hyphens-auto md:hyphens-none' lang= 'en'>
-          <ReactMarkdown remarkPlugins= { [ remarkGfm ] }>
+          <ReactMarkdown
+            remarkPlugins= { [ remarkGfm ] }
+            components= { {
+              code ( { className, children, ...props } ) {
+                const lng = className?.match( /language-(\w+)/ )?.[ 1 ]?.toLowerCase();
+                const highlighterLng = lng ? languageMap[ lng ] : undefined;
+
+                return highlighterLng ? (
+                  <SyntaxHighlighter
+                    language= { highlighterLng }
+                    style= { oneLight }
+                    PreTag= 'div'
+                    customStyle= { { margin: 0, padding: 0, background: 'transparent' } }
+                  >
+                    { String( children ).replace( /\n$/, '' ) }
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className= { className } { ...props }>{ children }</code>
+                );
+              }
+            } }
+          >
             { pkg.readme }
           </ReactMarkdown>
         </div>
