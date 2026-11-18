@@ -111,7 +111,7 @@ export function Overview () {
                   <button
                     type= 'button'
                     onClick= { () => copyInstall( id, installCmd ) }
-                    className= 'inline-flex items-center gap-1 text-slate-500 hover:text-teal-700 transition-colors'
+                    className= 'shrink-0 inline-flex items-center gap-1 text-slate-500 hover:text-teal-700 transition-colors'
                     aria-label= { `Copy ${ installCmd }` }
                   >
                     { copiedId === id ? (
