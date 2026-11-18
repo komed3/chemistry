@@ -22,7 +22,7 @@ type FormulaInputProps = {
 
 
 const INPUT =
-  'block w-full px-3.5 py-2 text-base font-mono text-slate-900 bg-white border ' +
+  'block min-w-0 w-full px-3.5 py-2 text-base font-mono text-slate-900 bg-white border ' +
   'border-slate-200 rounded focus:outline-none focus:border-teal-600';
 
 
