@@ -111,7 +111,7 @@ export function Package () {
         </div>
       </aside>
 
-      <div className= 'flex-1 space-y-8'>
+      <div className= 'flex-1 min-w-0 space-y-8'>
         <div className= 'pb-8 space-y-4 border-b border-slate-200'>
           <div className= 'flex flex-col sm:flex-row sm:justify-between items-start sm:items-start gap-4'>
             <h1 className= 'flex items-center gap-3 text-2xl sm:text-3xl font-semibold tracking-tight'>
@@ -156,6 +156,13 @@ export function Package () {
           <ReactMarkdown
             remarkPlugins= { [ remarkGfm ] }
             components= { {
+              table ( { children, ...props } ) {
+                return (
+                  <div className= 'min-w-0 max-w-full overflow-x-auto'>
+                    <table { ...props }>{ children }</table>
+                  </div>
+                );
+              },
               code ( { className, children, ...props } ) {
                 const lng = className?.match( /language-(\w+)/ )?.[ 1 ]?.toLowerCase();
                 const highlighterLng = lng ? languageMap[ lng ] : undefined;
@@ -165,7 +172,7 @@ export function Package () {
                     language= { highlighterLng }
                     style= { prismTheme }
                     PreTag= 'div'
-                    customStyle= { { margin: 0, padding: 0 } }
+                    customStyle= { { margin: 0, padding: 0, minWidth: 'max-content' } }
                   >
                     { String( children ).replace( /\n$/, '' ) }
                   </SyntaxHighlighter>
