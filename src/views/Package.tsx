@@ -1,6 +1,6 @@
 import { getPackageById } from '@/src/packages/registry';
 import { NotFound } from '@/src/views/NotFound';
-import { Check, ExternalLink, Terminal } from 'lucide-react';
+import { Check, CodeXml, ExternalLink } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { Link, useParams } from 'react-router';
 import remarkGfm from 'remark-gfm';
@@ -32,6 +32,17 @@ export function Package () {
             </tbody>
           </table>
         </div>
+
+        <Link
+          to= { `/pkg/${ pkg.id }/playground` }
+          className= {
+            'flex justify-center items-center gap-3 px-5 py-3 font-medium text-white ' +
+            'bg-teal-600 rounded-sm hover:bg-teal-700 transition-colors'
+          }
+        >
+          <CodeXml className= 'shrink-0 size-5' />
+          <span>Open Playground</span>
+        </Link>
 
         <ul className= 'px-4 space-y-1.5 text-sm text-slate-700'>
           { pkg.highlights.map( item => (
@@ -118,7 +129,7 @@ export function Package () {
                   'text-white bg-teal-600 rounded-sm hover:bg-teal-700 transition-colors'
                 }
               >
-                <Terminal className= 'shrink-0 size-3.5' />
+                <CodeXml className= 'shrink-0 size-4' />
                 <span>Try It</span>
               </Link>
             </div>
