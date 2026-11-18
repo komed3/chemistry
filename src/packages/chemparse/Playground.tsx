@@ -1,3 +1,4 @@
+import { ErrorMessage } from '@/src/components/ui/ErrorMessage';
 import { Tabs } from '@/src/components/ui/Tabs';
 import { formatCharge } from '@/src/lib/formatter';
 import type { ChemParseResult } from 'chemparse';
@@ -105,14 +106,7 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
           <strong className= 'font-mono'>{ String( valid ) }</strong>
         </div>
       ) : error ? (
-        <div className= 'flex items-start gap-3 p-4 text-sm text-rose-800 bg-white border border-slate-200 rounded'>
-          <AlertCircle className= 'shrink-0 size-4 text-rose-800' />
-
-          <div className= 'leading-none'>
-            <p className= 'font-medium'>Parse Error</p>
-            <p className= 'mt-1 text-xs font-mono text-rose-800'>{ error }</p>
-          </div>
-        </div>
+        <ErrorMessage error= { error } label= 'Parse Error' />
       ) : data && (
         <>
           <div className= 'grid grid-cols-4 gap-4'>
@@ -280,14 +274,7 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
       </div>
 
       { error ? (
-        <div className= 'flex items-start gap-3 p-4 text-sm text-rose-800 bg-white border border-slate-200 rounded'>
-          <AlertCircle className= 'shrink-0 size-4 text-rose-800' />
-
-          <div className= 'leading-none'>
-            <p className= 'font-medium'>Parse Error</p>
-            <p className= 'mt-1 text-xs font-mono text-rose-800'>{ error }</p>
-          </div>
-        </div>
+        <ErrorMessage error= { error } label= 'Parse Error' />
       ) : mode === 'compare' ? (
         <div
           className= {
