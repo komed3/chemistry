@@ -21,12 +21,15 @@ const TABS = {
   validate: 'validate()', parse: 'parse()'
 } as const;
 
+const REDOX_MEDIA = { none: 'None', acidic: 'Acidic', basic: 'Basic' } as const;
+const SEARCH_PROFILE = { fast: 'Fast', balanced: 'Balanced', thorough: 'Thorough' } as const;
+
 const PRESETS = [
   'H2 + O2 -> H2O', 'Fe + O2 -> Fe2O3', 'CH4 + O2 -> CO2 + H2O',
   'MnO4^- + Fe^2+ -> Mn^2+ + Fe^3+', 'MnO4^- + SO3^2- -> MnO2 + SO4^2-'
 ] as const;
 
-const REDOX_MEDIA: Record< string, 'acidic' | 'basic' > = {
+const PRESET_REDOX_MEDIA: Record< string, 'acidic' | 'basic' > = {
   'MnO4^- + Fe^2+ -> Mn^2+ + Fe^3+': 'acidic',
   'MnO4^- + SO3^2- -> MnO2 + SO4^2-': 'basic'
 };
@@ -34,11 +37,11 @@ const REDOX_MEDIA: Record< string, 'acidic' | 'basic' > = {
 
 function Balance () {
   const [ equation, setEquation ] = useState< string >( PRESETS[ 0 ] );
-  const [ medium, setMedium ] = useState< 'none' | 'acidic' | 'basic' >( 'none' );
-  const [ search, setSearch ] = useState< 'fast' | 'balanced' | 'thorough' >( 'balanced' );
+  const [ medium, setMedium ] = useState< keyof typeof REDOX_MEDIA >( 'none' );
+  const [ search, setSearch ] = useState< keyof typeof SEARCH_PROFILE >( 'balanced' );
 
   const updateEquation = ( value: string ) => {
-    setEquation( value ), setMedium( REDOX_MEDIA[ value ] ?? 'none' );
+    setEquation( value ), setMedium( PRESET_REDOX_MEDIA[ value ] ?? 'none' );
   };
 
   const { data, error } = useMemo< Result< BalanceResult > >( () => {
@@ -61,14 +64,14 @@ function Balance () {
       <div className= 'grid grid-cols-1 sm:grid-cols-2 gap-4'>
         <OptionGroup
           label= 'Reaction Medium'
-          options= { { none: 'None', acidic: 'Acidic', basic: 'Basic' } }
+          options= { REDOX_MEDIA }
           value= { medium }
           setValue= { setMedium }
         />
 
         <OptionGroup
           label= 'Search Profile'
-          options= { { fast: 'Fast', balanced: 'Balanced', thorough: 'Thorough' } }
+          options= { SEARCH_PROFILE }
           value= { search }
           setValue= { setSearch }
         />
