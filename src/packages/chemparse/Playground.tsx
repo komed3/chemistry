@@ -107,6 +107,31 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
             ) ) }
           </div>
 
+          { Object.keys( data.elementCounts ).length > 0 && (
+            <div className= 'bg-white border border-slate-200 rounded overflow-hidden'>
+              <div className= 'px-4 py-2.5 text-xs font-medium bg-slate-50 border-b border-slate-200'>
+                Element Counts
+              </div>
+              <table className= 'w-full text-sm border-collapse'>
+                <thead>
+                  <tr className= 'text-xs text-slate-500 border-b border-slate-200'>
+                    <th className= 'px-4 py-2 text-left font-medium'>Element</th>
+                    <th className= 'px-4 py-2 text-right font-medium'>Count</th>
+                  </tr>
+                </thead>
+
+                <tbody className= 'divide-y divide-slate-200'>
+                  { Object.entries( data.elementCounts ).map( ( [ el, count ] ) => (
+                    <tr key= { el }>
+                      <td className= 'px-4 py-2 font-mono font-medium'>{ el }</td>
+                      <td className= 'px-4 py-2 text-right font-mono tabular-nums'>{ count }</td>
+                    </tr>
+                  ) ) }
+                </tbody>
+              </table>
+            </div>
+          ) }
+
           <pre className= 'p-4 text-sm font-mono bg-white border border-slate-200 rounded'>
             { JSON.stringify( data, null, 2 ) }
           </pre>
