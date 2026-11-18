@@ -7,6 +7,7 @@ export interface PackageDefinition {
   name: string;
   npmName: string;
   version: string;
+  year: string;
   license: string;
   tagline: string;
   icon: LucideIcon;
