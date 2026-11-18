@@ -1,7 +1,9 @@
 import { getPackageById } from '@/src/packages/registry';
 import { NotFound } from '@/src/views/NotFound';
 import { ExternalLink, Terminal } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import { Link, useParams } from 'react-router';
+import remarkGfm from 'remark-gfm';
 
 
 export function Package () {
@@ -64,6 +66,12 @@ export function Package () {
           <p className= 'text-lg leading-relaxed text-slate-600'>
             { pkg.tagline }
           </p>
+        </div>
+
+        <div className= 'readme'>
+          <ReactMarkdown remarkPlugins= { [ remarkGfm ] }>
+            { pkg.readme }
+          </ReactMarkdown>
         </div>
       </div>
     </div>
