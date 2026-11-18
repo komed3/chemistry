@@ -22,7 +22,7 @@ export function Overview () {
           TypeScript Chemistry Libraries
         </p>
 
-        <h1 className= 'max-w-2xl text-5xl font-semibold tracking-tight text-balance text-slate-900'>
+        <h1 className= 'max-w-2xl text-3xl sm:text-5xl font-semibold tracking-tight text-balance'>
           Lightweight modules for chemical operations.
         </h1>
 
@@ -70,16 +70,16 @@ export function Overview () {
           { PACKAGES.map( ( { id, name, tagline, icon: Icon, version, license, highlights, installCmd, githubUrl, npmUrl } ) => (
             <div
               key= { id }
-              className= 'flex flex-col justify-between gap-6 p-6 bg-white border border-slate-200 rounded'
+              className= 'flex flex-col justify-between gap-6 p-4 md:p-6 bg-white border border-slate-200 rounded'
             >
               <div className= 'space-y-4'>
                 <div className= 'flex justify-between items-center gap-4'>
                   <div className= 'flex items-center gap-3'>
-                    <Icon className= 'shrink-0 size-6 text-teal-600' />
+                    <Icon className= 'hidden sm:block shrink-0 size-6 text-teal-600' />
                     <h3 className= 'text-xl font-semibold text-slate-900'>{ name }</h3>
                   </div>
 
-                  <div className= 'text-xs font-mono tabular-nums whitespace-nowrap text-slate-500'>
+                  <div className= 'hidden sm:block text-xs font-mono tabular-nums whitespace-nowrap text-slate-500'>
                     <span>v{ version }</span>
                     <span className= 'mx-1.5'>—</span>
                     <span>{ license }</span>
