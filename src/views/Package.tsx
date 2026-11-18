@@ -27,8 +27,8 @@ export function Package () {
   const Icon = pkg.icon;
 
   return (
-    <div className= 'flex items-start gap-12'>
-      <aside className= 'shrink-0 w-80 space-y-8'>
+    <div className= 'flex flex-col-reverse lg:flex-row items-start gap-8 lg:gap-12'>
+      <aside className= 'shrink-0 w-full space-y-8 lg:w-80'>
         <div className= 'bg-white border border-slate-200 px-4 py-2'>
           <table className= 'w-full'>
             <tbody className= 'divide-y divide-dashed divide-slate-200'>
@@ -113,13 +113,13 @@ export function Package () {
 
       <div className= 'flex-1 space-y-8'>
         <div className= 'pb-8 space-y-4 border-b border-slate-200'>
-          <div className= 'flex justify-between items-start gap-4'>
-            <h1 className= 'flex items-center gap-3 text-3xl font-semibold tracking-tight'>
+          <div className= 'flex flex-col sm:flex-row sm:justify-between items-start sm:items-start gap-4'>
+            <h1 className= 'flex items-center gap-3 text-2xl sm:text-3xl font-semibold tracking-tight'>
               <Icon className= 'shrink-0 size-8 text-teal-600' />
               <span>{ pkg.name }</span>
             </h1>
 
-            <div className= 'flex items-center gap-3'>
+            <div className= 'flex flex-wrap items-center gap-3'>
               <a
                 href= { pkg.githubUrl }
                 target= '_blank'
