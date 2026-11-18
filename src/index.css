@@ -50,6 +50,15 @@
 }
 
 
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
 /** Markdown Styling */
 
 .readme h1, .readme h2, .readme h3 {
