@@ -132,6 +132,31 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
             </div>
           ) }
 
+          { Object.keys( data.particleCounts ?? {} ).length > 0 && (
+            <div className= 'bg-white border border-slate-200 rounded overflow-hidden'>
+              <div className= 'px-4 py-2.5 text-xs font-medium bg-slate-50 border-b border-slate-200'>
+                Particle Counts
+              </div>
+              <table className= 'w-full text-sm border-collapse'>
+                <thead>
+                  <tr className= 'text-xs text-slate-500 border-b border-slate-200'>
+                    <th className= 'px-4 py-2 text-left font-medium'>Particle</th>
+                    <th className= 'px-4 py-2 text-right font-medium'>Count</th>
+                  </tr>
+                </thead>
+
+                <tbody className= 'divide-y divide-slate-200'>
+                  { Object.entries( data.particleCounts ?? {} ).map( ( [ symbol, count ] ) => (
+                    <tr key= { symbol }>
+                      <td className= 'px-4 py-2 text-left font-medium'>{ symbol }</td>
+                      <td className= 'px-4 py-2 text-right font-medium'>{ count }</td>
+                    </tr>
+                  ) ) }
+                </tbody>
+              </table>
+            </div>
+          ) }
+
           <pre className= 'p-4 text-sm font-mono bg-white border border-slate-200 rounded'>
             { JSON.stringify( data, null, 2 ) }
           </pre>
