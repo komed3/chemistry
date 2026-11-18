@@ -1,5 +1,6 @@
 import { getPackageById } from '@/src/packages/registry';
 import { NotFound } from '@/src/views/NotFound';
+import { ExternalLink } from 'lucide-react';
 import { useParams } from 'react-router';
 
 
@@ -30,6 +31,22 @@ export function Package () {
               <h1 className= 'text-3xl font-semibold tracking-tight'>
                 { pkg.name }
               </h1>
+            </div>
+
+            <div className= 'flex items-center gap-3'>
+              <a
+                href= { pkg.githubUrl }
+                target= '_blank'
+                rel= 'noreferrer'
+                className= {
+                  'inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium ' +
+                  'text-slate-700 bg-white border border-slate-300 rounded-sm ' +
+                  'hover:text-slate-900 hover:border-slate-400 transition-colors'
+                }
+              >
+                <span>GitHub</span>
+                <ExternalLink className= 'shrink-0 size-3.5' />
+              </a>
             </div>
           </div>
 
