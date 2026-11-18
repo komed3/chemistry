@@ -1,3 +1,7 @@
+import { ErrorMessage } from '@/src/components/ui/ErrorMessage';
+import { FormulaInput } from '@/src/components/ui/FormulaInput';
+import { JsonDump } from '@/src/components/ui/JsonDump';
+import { ResultGrid } from '@/src/components/ui/ResultGrid';
 import { Tabs } from '@/src/components/ui/Tabs';
 import type { ChemicalEquation } from 'chembalance';
 import { parse } from 'chembalance';
@@ -50,7 +54,29 @@ function Parse () {
 
 
   return (
-    <></>
+    <>
+      <FormulaInput
+        mode= 'single'
+        value= { equation }
+        setValue= { setEquation }
+        presets= { PRESETS }
+        label= 'Chemical Reaction Equation'
+        placeholder= 'e.g. H2 + O2 -> H2O'
+      />
+
+      { error ? (
+        <ErrorMessage error= { error } label= 'Equation Error' />
+      ) : data && (
+        <>
+          <ResultGrid data= { [
+            [ 'Reactants', data.reactants.length ],
+            [ 'Products', data.products.length ]
+          ] } />
+
+          <JsonDump data= { data } />
+        </>
+      ) }
+    </>
   );
 }
 
