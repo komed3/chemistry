@@ -1,3 +1,4 @@
+import { prismTheme } from '@/src/lib/prism';
 import { getPackageById } from '@/src/packages/registry';
 import { NotFound } from '@/src/views/NotFound';
 import { Check, CodeXml, ExternalLink } from 'lucide-react';
@@ -7,7 +8,6 @@ import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import javascript from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';
 import markup from 'react-syntax-highlighter/dist/esm/languages/prism/markup';
 import typescript from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
-import { oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import remarkGfm from 'remark-gfm';
 
 
@@ -16,10 +16,6 @@ SyntaxHighlighter.registerLanguage( 'markup', markup );
 SyntaxHighlighter.registerLanguage( 'typescript', typescript );
 
 const languageMap: Record< string, string > = { html: 'markup', js: 'javascript', ts: 'typescript' };
-
-const prismTheme = Object.fromEntries( Object.entries( oneLight ).map( ( [ selector, rules ] ) => [
-  selector, Object.fromEntries( Object.entries( rules ).filter( ( [ p ] ) => ! p.startsWith( 'background' ) ) )
-] ) );
 
 
 export function Package () {
