@@ -33,6 +33,18 @@ function Symbols () {
         <h2 className= 'text-sm font-semibold'>
           Supported IUPAC Elements ({ ELEMENT_SYMBOLS.length })
         </h2>
+
+        <div className= 'flex flex-wrap gap-2'>
+          { ELEMENT_SYMBOLS.map( ( el, i ) => (
+            <div
+              key= { el }
+              className= 'w-18 px-2 pt-1.5 pb-1 bg-white border border-slate-200 rounded-sm'
+            >
+              <div className= 'text-[11px] font-mono tabular-nums text-slate-400'>{ i + 1 }</div>
+              <div className= 'text-right font-mono font-medium'>{ el }</div>
+            </div>
+          ) ) }
+        </div>
       </div>
     </>
   );
