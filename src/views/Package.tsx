@@ -19,6 +19,14 @@ export function Package () {
         <div className= 'pb-8 space-y-4 border-b border-slate-200'>
           <div className= 'flex justify-between items-center gap-4'>
             <div className= 'space-y-1'>
+              <div className= 'text-xs font-mono tabular-nums text-slate-500'>
+                <span>{ pkg.npmName }</span>
+                <span className= 'mx-1.5'>—</span>
+                <span>v{ pkg.version }</span>
+                <span className= 'mx-1.5'>—</span>
+                <span>{ pkg.license }</span>
+              </div>
+
               <h1 className= 'text-3xl font-semibold tracking-tight'>
                 { pkg.name }
               </h1>
