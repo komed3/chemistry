@@ -2,6 +2,12 @@ import { Tabs } from '@/src/components/ui/Tabs';
 import { useState } from 'react';
 
 
+interface Result< T > {
+  data?: T;
+  error?: string;
+}
+
+
 const TABS = {
   balance: 'balance()', isBalanced: 'isBalanced()',
   validate: 'validate()', parse: 'parse()'
