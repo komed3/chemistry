@@ -5,14 +5,14 @@
     <title>Redirecting …</title>
     <script>
       ( function () {
-        var { replace, origin, hostname, pathname, search, hash } = window.location;
+        var { origin, hostname, pathname, search, hash } = window.location;
 
         sessionStorage.setItem( 'ghp_redirect', pathname + search + hash );
 
         var segments = pathname.split( '/' ).filter( Boolean );
         var base = segments.length > 0 && hostname.endsWith( 'github.io' ) ? '/' + segments[ 0 ] + '/' : '/';
 
-        replace( origin + base );
+        window.location.replace( origin + base );
       } )();
     </script>
   </head>
