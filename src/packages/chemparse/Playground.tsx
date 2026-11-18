@@ -76,7 +76,7 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
         <>
           <ResultGrid data= { [
             [ 'Elements', Object.keys( data.elementCounts ).length ],
-            [ 'Atoms', Object.values( data.elementCounts ).reduce( ( sum, v ) => sum + v, 0 ).toFixed( 0 ) ],
+            [ 'Atoms', Number( Object.values( data.elementCounts ).reduce( ( sum, v ) => sum + v, 0 ).toFixed( 8 ) ) ],
             [ 'Particles', Object.keys( data.particleCounts ?? {} ).length ],
             [ 'Total Charge', formatCharge( data.charge ) ]
           ] } />
