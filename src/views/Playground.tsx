@@ -16,14 +16,14 @@ export function Playground () {
   return (
     <div className= 'space-y-8'>
       <div className= 'space-y-4'>
-        <div className= 'flex justify-between items-start gap-4'>
-          <h1 className= 'flex items-center gap-3 text-3xl font-semibold tracking-tight'>
+        <div className= 'flex flex-col sm:flex-row sm:justify-between items-start sm:items-start gap-4'>
+          <h1 className= 'flex flex-wrap items-center gap-3 text-2xl sm:text-3xl font-semibold tracking-tight'>
             <Icon className= 'shrink-0 size-8 text-teal-600' />
             <span>{ pkg.name }</span>
             <span className= 'font-light text-slate-600'>Playground</span>
           </h1>
 
-          <div className= 'flex items-center gap-3'>
+          <div className= 'flex flex-wrap items-center gap-3'>
             <a
               href= { pkg.githubUrl }
               target= '_blank'
