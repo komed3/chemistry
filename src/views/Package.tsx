@@ -16,7 +16,7 @@ export function Package () {
 
   return (
     <div className= 'flex items-start gap-12'>
-      <aside className= 'shrink-0 w-80 space-y-12'>
+      <aside className= 'shrink-0 w-80 space-y-8'>
         <div className= 'bg-white border border-slate-200 px-4 py-2'>
           <table className= 'w-full'>
             <tbody className= 'divide-y divide-dashed divide-slate-200'>
@@ -33,7 +33,7 @@ export function Package () {
           </table>
         </div>
 
-        <ul className= 'px-6 space-y-1.5 text-sm text-slate-700'>
+        <ul className= 'px-4 space-y-1.5 text-sm text-slate-700'>
           { pkg.highlights.map( item => (
             <li key= { item } className= 'flex items-start gap-2'>
               <Check className= 'shrink-0 mt-0.5 size-4 text-teal-600' />
@@ -44,7 +44,33 @@ export function Package () {
 
         <hr className= 'border-t border-slate-200' />
 
-        <div className= ''></div>
+        <div className= 'space-y-2 text-xs'>
+          <a
+            href= { pkg.githubUrl }
+            target= '_blank'
+            rel= 'noreferrer'
+            className= {
+              'flex justify-between items-center px-2 py-1 text-slate-600 ' +
+              'hover:text-slate-900 transition-colors'
+            }
+          >
+            <span>GitHub Repository</span>
+            <ExternalLink className= 'shrink-0 size-3.5' />
+          </a>
+
+          <a
+            href= { pkg.npmUrl }
+            target= '_blank'
+            rel= 'noreferrer'
+            className= {
+              'flex justify-between items-center px-2 py-1 text-slate-600 ' +
+              'hover:text-slate-900 transition-colors'
+            }
+          >
+            <span>npm Package</span>
+            <ExternalLink className= 'shrink-0 size-3.5' />
+          </a>
+        </div>
       </aside>
 
       <div className= 'flex-1 space-y-8'>
