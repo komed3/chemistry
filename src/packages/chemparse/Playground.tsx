@@ -1,4 +1,4 @@
-import { Tabs } from '@/src/components/Tabs';
+import { Tabs } from '@/src/components/ui/Tabs';
 import { formatCharge } from '@/src/lib/formatter';
 import type { ChemParseResult } from 'chemparse';
 import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, compareMany, diffMany, parse } from 'chemparse';
