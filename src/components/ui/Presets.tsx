@@ -14,6 +14,11 @@ type PresetsProps< T extends string > = { label?: string } & ( {
 } );
 
 
+const BTN = ( active: boolean ) =>
+  'px-2 py-1 text-xs font-mono bg-white border rounded transition-colors ' +
+  ( active ? 'border-slate-900' : 'text-slate-600 border-slate-200' );
+
+
 export function Presets < T extends string > ( props: PresetsProps< T > ) {
   return (
     <div className= 'flex flex-wrap items-center gap-1.5'>
@@ -24,11 +29,7 @@ export function Presets < T extends string > ( props: PresetsProps< T > ) {
           key= { label }
           type= 'button'
           onClick= { () => props.setActive( values ) }
-          className= {
-            'px-2 py-1 text-xs font-mono bg-white border rounded transition-colors ' +
-            ( JSON.stringify( values ) === JSON.stringify( props.active )
-              ? 'border-slate-900' : 'text-slate-600 border-slate-200' )
-          }
+          className= { BTN( JSON.stringify( values ) === JSON.stringify( props.active ) ) }
         >
           { label }
         </button>
@@ -41,10 +42,7 @@ export function Presets < T extends string > ( props: PresetsProps< T > ) {
             key= { label }
             type= 'button'
             onClick= { () => props.setActive( value ) }
-            className= {
-              'px-2 py-1 text-xs font-mono bg-white border rounded transition-colors ' +
-              ( value === props.active ? 'border-slate-900' : 'text-slate-600 border-slate-200' )
-            }
+            className= { BTN( value === props.active ) }
           >
             { label }
           </button>
