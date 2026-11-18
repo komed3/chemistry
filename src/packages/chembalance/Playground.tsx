@@ -3,6 +3,7 @@ import { FormulaInput } from '@/src/components/ui/FormulaInput';
 import { JsonDump } from '@/src/components/ui/JsonDump';
 import { OptionGroup } from '@/src/components/ui/OptionGroup';
 import { ResultGrid } from '@/src/components/ui/ResultGrid';
+import { ResultTable } from '@/src/components/ui/ResultTable';
 import { Tabs } from '@/src/components/ui/Tabs';
 import { Validation } from '@/src/components/ui/Validation';
 import type { BalanceResult, ChemicalEquation } from 'chembalance';
@@ -76,6 +77,42 @@ function Balance () {
           setValue= { setSearch }
         />
       </div>
+
+      { error ? (
+        <ErrorMessage error= { error } label= 'Balance Error' />
+      ) : data && (
+        <>
+          <div className= 'p-4 bg-white border border-slate-200 rounded space-y-3'>
+            <div className= 'text-xs font-medium text-slate-500'>Balanced Equation</div>
+            <div className= 'text-lg font-mono font-medium text-slate-900 wrap-break-words'>
+              { data.equation }
+            </div>
+          </div>
+
+          <ResultGrid data= { [
+            [ 'Reaction Terms', data.coefficients.length ],
+            [ 'Coefficient Sum', data.coefficients.reduce( ( sum, value ) => sum + value, 0 ) ]
+          ] } />
+
+          <ResultTable
+            label= 'Reactants'
+            header= { [ 'Formula', 'Coefficient' ] }
+            data= { Object.fromEntries( data.reactants.map( ( { formula, coefficient }, i ) => [
+              `${ i + 1 }. ${ formula }`, coefficient
+            ] ) ) }
+          />
+
+          <ResultTable
+            label= 'Products'
+            header= { [ 'Formula', 'Coefficient' ] }
+            data= { Object.fromEntries( data.products.map( ( { formula, coefficient }, i ) => [
+              `${ i + 1 }. ${ formula }`, coefficient
+            ] ) ) }
+          />
+
+          <JsonDump data= { data } />
+        </>
+      ) }
     </>
   );
 }
