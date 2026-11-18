@@ -4,7 +4,7 @@ import { NavLink } from 'react-router';
 
 
 const BTN = ( isActive: boolean ) =>
-  'shrink-0 p-0.5 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors ' +
+  'shrink-0 md:p-0.5 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors ' +
   ( isActive ? 'border-teal-600' : 'text-slate-600 hover:text-slate-900 border-transparent' )
 
 
@@ -12,7 +12,7 @@ export function Header () {
   return (
     <header className= 'sticky top-0 z-30 bg-white/95 border-b border-slate-200 backdrop-blur-sm select-none'>
       <div className= 'relative mx-auto max-w-7xl h-16'>
-        <div className= 'absolute top-1/2 left-6 -translate-y-1/2 flex items-center gap-4'>
+        <div className= 'absolute top-1/2 left-4 md:left-6 -translate-y-1/2 flex items-center gap-4'>
           <img
             src= { flask }
             loading= 'lazy'
@@ -20,12 +20,17 @@ export function Header () {
             className= 'shrink-0 size-9'
           />
 
-          <span className= 'shrink-0 font-semibold whitespace-nowrap'>
+          <span className= 'hidden md:block shrink-0 font-semibold whitespace-nowrap'>
             Chemistry Tools
           </span>
         </div>
 
-        <nav className= 'absolute top-1/2 left-1/2 -translate-1/2 flex items-center gap-6'>
+        <nav
+          className= {
+            'absolute top-1/2 xl:left-1/2 right-4 md:right-6 xl:right-auto -translate-y-1/2 ' +
+            'xl:-translate-1/2 flex items-center gap-2 md:gap-6'
+          }
+        >
           <NavLink to= '/' className= { ( { isActive } ) => BTN( isActive ) }>
             Overview
           </NavLink>
@@ -40,7 +45,7 @@ export function Header () {
           ) ) }
         </nav>
 
-        <div className= 'absolute top-1/2 right-6 -translate-y-1/2'>
+        <div className= 'hidden xl:block absolute top-1/2 right-6 -translate-y-1/2'>
           <a
             href= 'https://ko-fi.com/komed3'
             target= '_blank'
