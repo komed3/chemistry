@@ -276,6 +276,19 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
           <span>Add formula</span>
         </button>
       </div>
+
+      { error ? (
+        <div className= 'flex items-start gap-3 p-4 text-sm text-rose-800 bg-white border border-slate-200 rounded'>
+          <AlertCircle className= 'shrink-0 size-4 text-rose-800' />
+
+          <div className= 'leading-none'>
+            <p className= 'font-medium'>Parse Error</p>
+            <p className= 'mt-1 text-xs font-mono text-rose-800'>{ error }</p>
+          </div>
+        </div>
+      ) : (
+        <></>
+      ) }
     </>
   );
 }
