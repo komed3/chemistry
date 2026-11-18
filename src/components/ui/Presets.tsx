@@ -1,15 +1,15 @@
 type PresetOption< T extends string > = { label: string, value: T };
-type MultiPresetOption< T extends string > = { label: string, values: T[] };
+type MultiPresetOption< T extends string > = { label: string, values: readonly T[] };
 
 type PresetsProps< T extends string > = { label?: string } & ( {
   mode?: 'single';
-  presets: T[] | PresetOption< T >[];
+  presets: readonly T[] | readonly PresetOption< T >[];
   active: T;
   setActive: ( value: T ) => void;
 } | {
   mode: 'multi';
-  presets: MultiPresetOption< T >[];
-  active: T[];
+  presets: readonly MultiPresetOption< T >[];
+  active: readonly T[];
   setActive: ( value: T[] ) => void;
 } );
 
@@ -28,7 +28,7 @@ export function Presets < T extends string > ( props: PresetsProps< T > ) {
         <button
           key= { label }
           type= 'button'
-          onClick= { () => props.setActive( values ) }
+          onClick= { () => props.setActive( [ ...values ] ) }
           className= { BTN( JSON.stringify( values ) === JSON.stringify( props.active ) ) }
         >
           { label }
