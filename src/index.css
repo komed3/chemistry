@@ -90,7 +90,7 @@
 }
 
 .readme a {
-  @apply underline underline-offset-2 text-teal-600;
+  @apply underline underline-offset-2 text-teal-600 break-all;
 }
 
 .readme code:not(pre code) {
