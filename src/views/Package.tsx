@@ -1,6 +1,6 @@
 import { getPackageById } from '@/src/packages/registry';
 import { NotFound } from '@/src/views/NotFound';
-import { ExternalLink, Terminal } from 'lucide-react';
+import { Check, ExternalLink, Terminal } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { Link, useParams } from 'react-router';
 import remarkGfm from 'remark-gfm';
@@ -16,7 +16,7 @@ export function Package () {
 
   return (
     <div className= 'flex items-start gap-12'>
-      <aside className= 'shrink-0 w-80'>
+      <aside className= 'shrink-0 w-80 space-y-12'>
         <div className= 'bg-white border border-slate-200 px-4 py-2'>
           <table className= 'w-full'>
             <tbody className= 'divide-y divide-dashed divide-slate-200'>
@@ -32,6 +32,19 @@ export function Package () {
             </tbody>
           </table>
         </div>
+
+        <ul className= 'px-6 space-y-1.5 text-sm text-slate-700'>
+          { pkg.highlights.map( item => (
+            <li key= { item } className= 'flex items-start gap-2'>
+              <Check className= 'shrink-0 mt-0.5 size-4 text-teal-600' />
+              <span>{ item }</span>
+            </li>
+          ) ) }
+        </ul>
+
+        <hr className= 'border-t border-slate-200' />
+
+        <div className= ''></div>
       </aside>
 
       <div className= 'flex-1 space-y-8'>
