@@ -264,17 +264,19 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
           ) ) }
         </div>
 
-        <button
-          type= 'button'
-          onClick= { () => setFormulas( [ ...formulas, '' ] ) }
-          className= {
-            'inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-slate-600 bg-white ' +
-            'border border-slate-200 rounded transition-colors hover:text-slate-900'
-          }
-        >
-          <Plus className= 'shrink-0 size-3.5' />
-          <span>Add formula</span>
-        </button>
+        <div className= 'text-right'>
+          <button
+            type= 'button'
+            onClick= { () => setFormulas( [ ...formulas, '' ] ) }
+            className= {
+              'inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-slate-600 bg-white ' +
+              'border border-slate-200 rounded transition-colors hover:text-slate-900'
+            }
+          >
+            <Plus className= 'shrink-0 size-3.5' />
+            <span>Add formula</span>
+          </button>
+        </div>
       </div>
 
       { error ? (
@@ -285,6 +287,18 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
             <p className= 'font-medium'>Parse Error</p>
             <p className= 'mt-1 text-xs font-mono text-rose-800'>{ error }</p>
           </div>
+        </div>
+      ) : mode === 'compare' ? (
+        <div
+          className= {
+            'flex items-center gap-3 p-4 text-sm bg-white border border-slate-200 rounded ' +
+            ( equal ? 'text-teal-800' : 'text-rose-800' )
+          }
+        >
+          { equal ? <Check className= 'shrink-0 size-4' /> : <AlertCircle className= 'shrink-0 size-4' /> }
+          <code className= 'font-mono font-medium'>{ formulas.length > 2 ? 'compareMany()' : 'compare()' }</code>
+          <span>returned</span>
+          <strong className= 'font-mono'>{ String( equal ) }</strong>
         </div>
       ) : (
         <></>
