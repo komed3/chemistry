@@ -16,7 +16,7 @@ export default function App () {
     <>
       <Header />
 
-      <main className= 'mx-auto my-12 min-h-screen max-w-7xl px-6'>
+      <main className= 'mx-auto my-8 min-h-screen max-w-7xl px-4 sm:my-12 sm:px-6'>
         <Routes>
           <Route path= '/pkg/:id' element= { <Package /> } />
           <Route path= '/pkg/:id/playground' element= { <Playground /> } />
