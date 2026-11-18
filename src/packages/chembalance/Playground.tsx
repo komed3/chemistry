@@ -4,7 +4,7 @@ import { JsonDump } from '@/src/components/ui/JsonDump';
 import { ResultGrid } from '@/src/components/ui/ResultGrid';
 import { Tabs } from '@/src/components/ui/Tabs';
 import type { ChemicalEquation } from 'chembalance';
-import { parse } from 'chembalance';
+import { isBalanced, parse, validate } from 'chembalance';
 import { useMemo, useState } from 'react';
 
 
@@ -38,6 +38,14 @@ function Balance () {
 
 
 function CheckEquation ( { mode }: { mode: 'isBalanced' | 'validate' } ) {
+  const [ equation, setEquation ] = useState< string >( PRESETS[ 0 ] );
+
+  const { data, error } = useMemo< Result< boolean > >( () => {
+    try { return { data: mode === 'validate' ? validate( equation ) : isBalanced( equation ) } }
+    catch ( err ) { return { error: err instanceof Error ? err.message : String( err ) } }
+  }, [ equation, mode ] );
+
+
   return (
     <></>
   );
