@@ -1,6 +1,7 @@
 import { ErrorMessage } from '@/src/components/ui/ErrorMessage';
 import { FormulaInput } from '@/src/components/ui/FormulaInput';
 import { JsonDump } from '@/src/components/ui/JsonDump';
+import { OptionGroup } from '@/src/components/ui/OptionGroup';
 import { ResultGrid } from '@/src/components/ui/ResultGrid';
 import { Tabs } from '@/src/components/ui/Tabs';
 import { Validation } from '@/src/components/ui/Validation';
@@ -47,7 +48,32 @@ function Balance () {
 
 
   return (
-    <></>
+    <>
+      <FormulaInput
+        mode= 'single'
+        value= { equation }
+        setValue= { updateEquation }
+        presets= { PRESETS }
+        label= 'Chemical Reaction Equation'
+        placeholder= 'e.g. H2 + O2 -> H2O'
+      />
+
+      <div className= 'grid grid-cols-1 sm:grid-cols-2 gap-4'>
+        <OptionGroup
+          label= 'Reaction Medium'
+          options= { { none: 'None', acidic: 'Acidic', basic: 'Basic' } }
+          value= { medium }
+          setValue= { setMedium }
+        />
+
+        <OptionGroup
+          label= 'Search Profile'
+          options= { { fast: 'Fast', balanced: 'Balanced', thorough: 'Thorough' } }
+          value= { search }
+          setValue= { setSearch }
+        />
+      </div>
+    </>
   );
 }
 
