@@ -1,9 +1,22 @@
 import { Tabs } from '@/src/components/Tabs';
 import { formatCharge } from '@/src/lib/formatter';
 import type { ChemParseResult } from 'chemparse';
-import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, parse } from 'chemparse';
+import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, compareMany, diffMany, parse } from 'chemparse';
 import { AlertCircle, Check } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+
+
+interface SingleResult {
+  data?: ChemParseResult;
+  valid: boolean;
+  error?: string;
+}
+
+interface MultiResult {
+  equal?: boolean;
+  diffs?: ( ChemParseResult & { formula: string } )[];
+  error?: string;
+}
 
 
 const TABS = {
@@ -24,7 +37,7 @@ const INPUT =
 function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
   const [ formula, setFormula ] = useState( 'CuSO4·5H2O' );
 
-  const { data, valid, error } = useMemo< { data?: ChemParseResult; valid: boolean; error?: string } >( () => {
+  const { data, valid, error } = useMemo< SingleResult >( () => {
     try { return { data: parse( formula ), valid: true } }
     catch ( err ) { return { valid: false, error: err instanceof Error ? err.message : String( err ) } }
   }, [ formula, mode ] );
@@ -168,6 +181,15 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
 
 
 function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
+  const [ formulas, setFormulas ] = useState< string[] >( [] );
+  useEffect( () => setFormulas( mode === 'diff' ? [ 'C6H12O6', 'C1.5O3' ] : [ 'H2O', 'OH2' ] ), [ mode ] );
+
+  const { equal, diffs, error } = useMemo< MultiResult >( () => {
+    try { return mode === 'diff' ? { diffs: diffMany( ...formulas ) } : { equal: compareMany( ...formulas ) } }
+    catch ( err ) { return { error: err instanceof Error ? err.message : String( err ) } }
+  }, [ formulas, mode ] );
+
+
   return (
     <></>
   );
