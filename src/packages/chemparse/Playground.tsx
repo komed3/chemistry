@@ -8,6 +8,10 @@ const TABS = {
   diff: 'diff()', symbols: 'Symbols (118 + 8)'
 } as const;
 
+const SINGLE_PRESETS = [
+  'CuSO4·5H2O', 'K4[Fe(CN)6]', '2SO4^2-', 'Al2(S,O4)3', 'H2e-1O1e-1',
+  'SO4²⁻', '3α', 'ν̄',
+] as const;
 
 const INPUT =
   'block w-full px-3.5 py-2.5 text-base font-mono text-slate-900 bg-white border ' +
@@ -28,10 +32,28 @@ function Parse () {
           id= 'chemparse-input'
           type= 'text'
           value= { formula }
-          onChange={ e => setFormula( e.target.value ) }
+          onChange= { e => setFormula( e.target.value ) }
           placeholder= 'e.g. CuSO4·5H2O, K4[Fe(CN)6], SO4^2-, 3α'
           className= { INPUT }
         />
+
+        <div className= 'flex flex-wrap items-center gap-1.5'>
+          <span className= 'mr-2 text-xs text-slate-500'>Examples:</span>
+
+          { SINGLE_PRESETS.map( preset => (
+            <button
+              key={ preset }
+              type= 'button'
+              onClick= { () => setFormula( preset ) }
+              className= {
+                'px-2 py-1 text-xs font-mono bg-white border rounded-sm transition-colors ' +
+                ( formula === preset ? 'border-slate-900' : 'text-slate-600 border-slate-200' )
+              }
+            >
+              { preset }
+            </button>
+          ) ) }
+        </div>
       </div>
     </>
   );
