@@ -15,7 +15,7 @@ export function Playground () {
 
   return (
     <div className= 'space-y-8'>
-      <div className= 'pb-8 space-y-4 border-b border-slate-200'>
+      <div className= 'space-y-4'>
         <div className= 'flex justify-between items-start gap-4'>
           <h1 className= 'flex items-center gap-3 text-3xl font-semibold tracking-tight'>
             <Icon className= 'shrink-0 size-8 text-teal-600' />
