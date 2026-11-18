@@ -17,7 +17,21 @@ export function Package () {
   return (
     <div className= 'flex items-start gap-12'>
       <aside className= 'shrink-0 w-80'>
-        <div className= 'p-4 bg-white border border-slate-200'></div>
+        <div className= 'bg-white border border-slate-200 px-4 py-2'>
+          <table className= 'w-full'>
+            <tbody className= 'divide-y divide-dashed divide-slate-200'>
+              { [
+                [ 'Version', `v${ pkg.version }` ], [ 'Install', pkg.installCmd ],
+                [ 'Year', pkg.year ], [ 'License', pkg.license ]
+              ].map( ( [ label, value ] ) => (
+                <tr key= { label } className= 'text-[13px] *:px-3 *:py-2.5'>
+                  <td>{ label }</td>
+                  <td className= 'text-right font-mono tabular-nums'>{ value }</td>
+                </tr>
+              ) ) }
+            </tbody>
+          </table>
+        </div>
       </aside>
 
       <div className= 'flex-1 space-y-8'>
