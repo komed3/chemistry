@@ -1,4 +1,5 @@
 import { Tabs } from '@/src/components/Tabs';
+import { formatCharge } from '@/src/lib/formatter';
 import type { ChemParseResult } from 'chemparse';
 import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, parse } from 'chemparse';
 import { AlertCircle, Check } from 'lucide-react';
@@ -87,11 +88,12 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
         </div>
       ) : data && (
         <>
-          <div className= 'grid grid-cols-3 gap-4'>
+          <div className= 'grid grid-cols-4 gap-4'>
             { [
               [ 'Elements', Object.keys( data.elementCounts ).length ],
+              [ 'Atoms', Object.values( data.elementCounts ).reduce( ( sum, v ) => sum + v, 0 ) ],
               [ 'Particles', Object.keys( data.particleCounts ?? {} ).length ],
-              [ 'Total Charge', ( '+' + ( data.charge ?? 0 ) ).replace( '+-', '-' ) ]
+              [ 'Total Charge', formatCharge( data.charge ) ]
             ].map( ( [ label, value ] ) => (
               <div key= { label } className= 'py-3 px-4 bg-white border border-slate-200 rounded'>
                 <div className= 'mb-1.5 text-xs text-slate-500'>
