@@ -4,8 +4,8 @@ import { JsonDump } from '@/src/components/ui/JsonDump';
 import { ResultGrid } from '@/src/components/ui/ResultGrid';
 import { Tabs } from '@/src/components/ui/Tabs';
 import { Validation } from '@/src/components/ui/Validation';
-import type { ChemicalEquation } from 'chembalance';
-import { isBalanced, parse, validate } from 'chembalance';
+import type { BalanceResult, ChemicalEquation } from 'chembalance';
+import { balance, isBalanced, parse, validate } from 'chembalance';
 import { useMemo, useState } from 'react';
 
 
@@ -32,6 +32,20 @@ const REDOX_MEDIA: Record< string, 'acidic' | 'basic' > = {
 
 
 function Balance () {
+  const [ equation, setEquation ] = useState< string >( PRESETS[ 0 ] );
+  const [ medium, setMedium ] = useState< 'none' | 'acidic' | 'basic' >( 'none' );
+  const [ search, setSearch ] = useState< 'fast' | 'balanced' | 'thorough' >( 'balanced' );
+
+  const updateEquation = ( value: string ) => {
+    setEquation( value ), setMedium( REDOX_MEDIA[ value ] ?? 'none' );
+  };
+
+  const { data, error } = useMemo< Result< BalanceResult > >( () => {
+    try { return { data: balance( equation, medium === 'none' ? { search } : { medium, search } ) } }
+    catch ( err ) { return { error: err instanceof Error ? err.message : String( err ) } }
+  }, [ equation, medium, search ] );
+
+
   return (
     <></>
   );
