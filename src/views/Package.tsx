@@ -18,7 +18,7 @@ export function Package () {
         ...
       </aside>
 
-      <div className= 'flex-1 space-y-12'>
+      <div className= 'flex-1 space-y-8'>
         <div className= 'pb-8 space-y-4 border-b border-slate-200'>
           <div className= 'flex justify-between items-start gap-4'>
             <div className= 'space-y-1'>
@@ -68,7 +68,7 @@ export function Package () {
           </p>
         </div>
 
-        <div className= 'readme'>
+        <div className= 'readme min-w-0 hyphens-auto md:hyphens-none' lang= 'en'>
           <ReactMarkdown remarkPlugins= { [ remarkGfm ] }>
             { pkg.readme }
           </ReactMarkdown>
