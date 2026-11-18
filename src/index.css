@@ -49,3 +49,42 @@
     @apply font-mono;
   }
 }
+
+
+/** Markdown Styling */
+
+.readme h1, .readme h2, .readme h3 {
+  @apply mb-4 font-semibold first:mt-0;
+}
+
+.readme h1 { @apply hidden; }
+.readme h2 { @apply mt-8 pt-8 text-lg border-t border-slate-200; }
+.readme h3 { @apply mt-4 text-base; }
+
+.readme p {
+  @apply mb-3 leading-relaxed;
+}
+
+.readme ul, .readme ol {
+  @apply ml-6 mb-6 space-y-1;
+}
+
+.readme ul {
+  @apply list-disc;
+}
+
+.readme ol {
+  @apply list-decimal;
+}
+
+.readme li::marker {
+  @apply text-current font-black;
+}
+
+.readme *:not(pre) > code {
+  @apply px-1.5 py-0.5 text-sm font-mono font-medium bg-slate-200/50 rounded;
+}
+
+.readme pre {
+  @apply my-4 w-full p-4 text-sm font-mono overflow-x-auto bg-white border border-slate-200;
+}
