@@ -25,9 +25,23 @@ const TABS = {
 } as const;
 
 const SINGLE_PRESETS = [
-  'CuSO4·5H2O', 'K4[Fe(CN)6]', '2SO4^2-', 'Al2(S,O4)3', 'H2e-1O1e-1',
-  'SO4²⁻', '3α', 'ν̄',
+  'CuSO4·5H2O', 'K4[Fe(CN)6]', '2SO4^2-', 'Al2(S,O4)3',
+  'H2e-1O1e-1', 'SO4²⁻', '3α', 'ν̄'
 ] as const;
+
+const MULTI_PRESETS = {
+  compare: [
+    { label: 'H2O vs OH2', values: [ 'H2O', 'OH2' ] },
+    { label: 'Ca(OH)2 = CaO2H2', values: [ 'Ca(OH)2', 'CaO2H2', 'H2CaO2' ] },
+    { label: 'NH4^+ vs NH4^-', values: [ 'NH4^+', 'NH4^-' ] }
+  ],
+  diff: [
+    { label: 'C6H12O6 - C1.5O3', values: [ 'C6H12O6', 'C1.5O3' ] },
+    { label: 'H2O - H2, O2', values: [ 'H2O', 'H2', 'O2' ] },
+    { label: '3α - α', values: [ '3α', 'α' ] }
+  ]
+} as const;
+
 
 const INPUT =
   'block w-full px-3.5 py-2.5 text-base font-mono text-slate-900 bg-white border ' +
@@ -191,7 +205,31 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
 
 
   return (
-    <></>
+    <>
+      <div className= 'space-y-3'>
+        <div className= 'flex flex-wrap justify-between items-center gap-2'>
+          <span className= 'text-xs font-medium text-slate-700'>
+            { mode === 'diff' ? 'Base formula (first) minus subsequent formulas' : 'Formulas to compare' }
+          </span>
+
+          <div className= 'flex flex-wrap items-center gap-1.5'>
+            { MULTI_PRESETS[ mode ].map( ( { label, values } ) => (
+              <button
+                key= { label }
+                type= 'button'
+                onClick= { () => setFormulas( values as unknown as string[] ) }
+                className= {
+                  'px-2 py-1 text-xs font-mono text-slate-600 bg-white border ' +
+                  'border-slate-200 rounded transition-colors hover:text-slate-900'
+                }
+              >
+                { label }
+              </button>
+            ) ) }
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 
