@@ -50,6 +50,10 @@ export function Playground () {
             </Link>
           </div>
         </div>
+
+        <p className= 'text-lg leading-relaxed text-slate-600'>
+          { pkg.tagline }
+        </p>
       </div>
     </div>
   );
