@@ -18,7 +18,7 @@ export function Package () {
 
       <div className= 'flex-1 space-y-12'>
         <div className= 'pb-8 space-y-4 border-b border-slate-200'>
-          <div className= 'flex justify-between items-center gap-4'>
+          <div className= 'flex justify-between items-start gap-4'>
             <div className= 'space-y-1'>
               <div className= 'text-xs font-mono tabular-nums text-slate-500'>
                 <span>{ pkg.npmName }</span>
