@@ -15,11 +15,11 @@ export function JsonDump ( { data }: JsonDumpProps ) {
   const formatted = JSON.stringify( data, null, 2 ) ?? '';
 
   return (
-    <div className= 'p-4 text-sm font-mono bg-white border border-slate-200 rounded'>
+    <div className= 'min-w-0 max-w-full overflow-x-auto bg-white border border-slate-200 rounded'>
       <SyntaxHighlighter
         language= 'json'
         style= { prismTheme }
-        customStyle= { { margin: 0, padding: 0 } }
+        customStyle= { { margin: 0, padding: '1rem', minWidth: 'max-content' } }
       >
         { formatted }
       </SyntaxHighlighter>
