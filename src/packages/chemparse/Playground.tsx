@@ -1,5 +1,6 @@
 import { ErrorMessage } from '@/src/components/ui/ErrorMessage';
 import { JsonDump } from '@/src/components/ui/JsonDump';
+import { ResultTable } from '@/src/components/ui/ResultTable';
 import { Tabs } from '@/src/components/ui/Tabs';
 import { ValidationMessage } from '@/src/components/ui/ValidationMessage';
 import { formatCharge } from '@/src/lib/formatter';
@@ -121,53 +122,19 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
           </div>
 
           { Object.keys( data.elementCounts ).length > 0 && (
-            <div className= 'bg-white border border-slate-200 rounded overflow-hidden'>
-              <div className= 'px-4 py-2.5 text-xs font-medium bg-slate-50 border-b border-slate-200'>
-                Element Counts
-              </div>
-              <table className= 'w-full text-sm border-collapse'>
-                <thead>
-                  <tr className= 'text-xs text-slate-500 border-b border-slate-200'>
-                    <th className= 'px-4 py-2 text-left font-medium'>Element</th>
-                    <th className= 'px-4 py-2 text-right font-medium'>Count</th>
-                  </tr>
-                </thead>
-
-                <tbody className= 'divide-y divide-slate-200'>
-                  { Object.entries( data.elementCounts ).map( ( [ el, count ] ) => (
-                    <tr key= { el }>
-                      <td className= 'px-4 py-2 font-mono font-medium'>{ el }</td>
-                      <td className= 'px-4 py-2 text-right font-mono tabular-nums'>{ count }</td>
-                    </tr>
-                  ) ) }
-                </tbody>
-              </table>
-            </div>
+            <ResultTable
+              label= 'Element Counts'
+              header= { [ 'Element', 'Count' ] }
+              data= { data.elementCounts }
+            />
           ) }
 
           { Object.keys( data.particleCounts ?? {} ).length > 0 && (
-            <div className= 'bg-white border border-slate-200 rounded overflow-hidden'>
-              <div className= 'px-4 py-2.5 text-xs font-medium bg-slate-50 border-b border-slate-200'>
-                Particle Counts
-              </div>
-              <table className= 'w-full text-sm border-collapse'>
-                <thead>
-                  <tr className= 'text-xs text-slate-500 border-b border-slate-200'>
-                    <th className= 'px-4 py-2 text-left font-medium'>Particle</th>
-                    <th className= 'px-4 py-2 text-right font-medium'>Count</th>
-                  </tr>
-                </thead>
-
-                <tbody className= 'divide-y divide-slate-200'>
-                  { Object.entries( data.particleCounts ?? {} ).map( ( [ symbol, count ] ) => (
-                    <tr key= { symbol }>
-                      <td className= 'px-4 py-2 text-left font-medium'>{ symbol }</td>
-                      <td className= 'px-4 py-2 text-right font-medium'>{ count }</td>
-                    </tr>
-                  ) ) }
-                </tbody>
-              </table>
-            </div>
+            <ResultTable
+              label= 'Particle Counts'
+              header= { [ 'Particle', 'Count' ] }
+              data= { data.particleCounts ?? {} }
+            />
           ) }
 
           <JsonDump data= { data } />
