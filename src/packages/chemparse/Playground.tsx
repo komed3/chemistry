@@ -16,6 +16,17 @@ function Symbols () {
         <h2 className= 'text-sm font-semibold'>
           Supported Particle Symbols ({ PARTICLE_SYMBOLS.length })
         </h2>
+
+        <div className= 'flex flex-wrap gap-2'>
+          { PARTICLE_SYMBOLS.map( symbol => (
+            <div
+              key= { symbol }
+              className= 'px-3 py-1.5 text-sm font-mono bg-white border border-slate-200 rounded-sm'
+            >
+              { symbol }
+            </div>
+          ) ) }
+        </div>
       </div>
 
       <div className= 'space-y-3'>
