@@ -70,6 +70,21 @@ export function Package () {
             <span>npm Package</span>
             <ExternalLink className= 'shrink-0 size-3.5' />
           </a>
+
+          { pkg.jsDelivrUrl && (
+            <a
+              href= { pkg.jsDelivrUrl }
+              target= '_blank'
+              rel= 'noreferrer'
+              className= {
+                'flex justify-between items-center px-2 py-1 text-slate-600 ' +
+                'hover:text-slate-900 transition-colors'
+              }
+            >
+              <span>Browser CDN jsDelivr</span>
+              <ExternalLink className= 'shrink-0 size-3.5' />
+            </a>
+          ) }
         </div>
       </aside>
 
