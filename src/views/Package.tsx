@@ -1,7 +1,7 @@
 import { getPackageById } from '@/src/packages/registry';
 import { NotFound } from '@/src/views/NotFound';
-import { ExternalLink } from 'lucide-react';
-import { useParams } from 'react-router';
+import { ExternalLink, Terminal } from 'lucide-react';
+import { Link, useParams } from 'react-router';
 
 
 export function Package () {
@@ -39,7 +39,7 @@ export function Package () {
                 target= '_blank'
                 rel= 'noreferrer'
                 className= {
-                  'inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium ' +
+                  'inline-flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium ' +
                   'text-slate-700 bg-white border border-slate-300 rounded-sm ' +
                   'hover:text-slate-900 hover:border-slate-400 transition-colors'
                 }
@@ -47,6 +47,17 @@ export function Package () {
                 <span>GitHub</span>
                 <ExternalLink className= 'shrink-0 size-3.5' />
               </a>
+
+              <Link
+                to= { `/pkg/${ pkg.id }/playground` }
+                className= {
+                  'inline-flex items-center gap-2 px-3.5 py-1.5 text-[13px] font-medium ' +
+                  'text-white bg-teal-600 rounded-sm hover:bg-teal-700 transition-colors'
+                }
+              >
+                <Terminal className= 'shrink-0 size-3.5' />
+                <span>Try It</span>
+              </Link>
             </div>
           </div>
 
