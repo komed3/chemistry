@@ -17,7 +17,7 @@ const SINGLE_PRESETS = [
 
 const INPUT =
   'block w-full px-3.5 py-2.5 text-base font-mono text-slate-900 bg-white border ' +
-  'border-slate-300 rounded-sm focus:outline-none focus:border-teal-600';
+  'border-slate-300 rounded focus:outline-none focus:border-teal-600';
 
 
 function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
@@ -54,7 +54,7 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
               type= 'button'
               onClick= { () => setFormula( preset ) }
               className= {
-                'px-2 py-1 text-xs font-mono bg-white border rounded-sm transition-colors ' +
+                'px-2 py-1 text-xs font-mono bg-white border rounded transition-colors ' +
                 ( formula === preset ? 'border-slate-900' : 'text-slate-600 border-slate-200' )
               }
             >
@@ -67,7 +67,7 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
       { mode === 'validate' ? (
         <div
           className= {
-            'flex items-center gap-3 p-4 text-sm bg-white border border-slate-200 rounded-sm ' +
+            'flex items-center gap-3 p-4 text-sm bg-white border border-slate-200 rounded ' +
             ( valid ? 'text-teal-800' : 'text-rose-800' )
           }
         >
@@ -77,7 +77,7 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
           <strong className= 'font-mono'>{ String( valid ) }</strong>
         </div>
       ) : error ? (
-        <div className= 'flex items-start gap-3 p-4 text-sm text-rose-800 bg-white border border-slate-200 rounded-sm'>
+        <div className= 'flex items-start gap-3 p-4 text-sm text-rose-800 bg-white border border-slate-200 rounded'>
           <AlertCircle className= 'shrink-0 size-4 text-rose-800' />
 
           <div className= 'leading-none'>
@@ -85,8 +85,26 @@ function Parse ( { mode }: { mode: 'parse' | 'validate' } ) {
             <p className= 'mt-1 text-xs font-mono text-rose-800'>{ error }</p>
           </div>
         </div>
-      ) : (
-        <></>
+      ) : data && (
+        <>
+          <div className= 'grid grid-cols-3 gap-4'>
+            { [
+              [ 'Elements', Object.keys( data.elementCounts ).length ],
+              [ 'Particles', Object.keys( data.particleCounts ?? {} ).length ],
+              [ 'Total Charge', ( '+' + ( data.charge ?? 0 ) ).replace( '+-', '-' ) ]
+            ].map( ( [ label, value ] ) => (
+              <div key= { label } className= 'py-3 px-4 bg-white border border-slate-200 rounded'>
+                <div className= 'mb-1.5 text-xs text-slate-500'>
+                  { label }
+                </div>
+
+                <div className= 'text-2xl font-semibold font-mono tabular-nums'>
+                  { value }
+                </div>
+              </div>
+            ) ) }
+          </div>
+        </>
       ) }
     </>
   );
@@ -105,7 +123,7 @@ function Symbols () {
           { PARTICLE_SYMBOLS.map( symbol => (
             <div
               key= { symbol }
-              className= 'px-3 py-1.5 text-sm font-mono bg-white border border-slate-200 rounded-sm'
+              className= 'px-3 py-1.5 text-sm font-mono bg-white border border-slate-200 rounded'
             >
               { symbol }
             </div>
@@ -122,7 +140,7 @@ function Symbols () {
           { ELEMENT_SYMBOLS.map( ( el, i ) => (
             <div
               key= { el }
-              className= 'w-18 px-2 pt-1.5 pb-1 bg-white border border-slate-200 rounded-sm'
+              className= 'w-18 px-2 pt-1.5 pb-1 bg-white border border-slate-200 rounded'
             >
               <div className= 'text-[11px] font-mono tabular-nums text-slate-400'>{ i + 1 }</div>
               <div className= 'text-right font-mono font-medium'>{ el }</div>
