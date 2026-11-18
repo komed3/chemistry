@@ -1,6 +1,7 @@
 import { Footer } from '@/src/components/layout/Footer';
 import { Header } from '@/src/components/layout/Header';
 import { Home } from '@/src/views/Home';
+import { NotFound } from '@/src/views/NotFound';
 import { Package } from '@/src/views/Package';
 import { Playground } from '@/src/views/Playground';
 import { useEffect } from 'react';
@@ -21,7 +22,7 @@ export default function App () {
           <Route path= '/pkg/:id/playground' element= { <Playground /> } />
 
           <Route path= '/' element= { <Home /> } />
-          <Route path= '*' element= { <></> } />
+          <Route path= '*' element= { <NotFound /> } />
         </Routes>
       </main>
 
