@@ -9,6 +9,7 @@ export default ( {
   name: 'ChemBalance',
   npmName: 'chembalance',
   version: '1.0.0',
+  year: '2026',
   license: 'MIT',
   tagline: 'Balance chemical reaction equations, redox reactions, and ionic systems using exact rational arithmetic.',
   icon: Scale,
