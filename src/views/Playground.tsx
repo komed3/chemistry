@@ -1,6 +1,7 @@
 import { getPackageById } from '@/src/packages/registry';
 import { NotFound } from '@/src/views/NotFound';
-import { useParams } from 'react-router';
+import { BookOpen, ExternalLink } from 'lucide-react';
+import { Link, useParams } from 'react-router';
 
 
 export function Playground () {
@@ -21,6 +22,33 @@ export function Playground () {
             <span>{ pkg.name }</span>
             <span className= 'font-light text-slate-600'>Playground</span>
           </h1>
+
+          <div className= 'flex items-center gap-3'>
+            <a
+              href= { pkg.githubUrl }
+              target= '_blank'
+              rel= 'noreferrer'
+              className= {
+                'inline-flex items-center gap-2 px-3 py-1.5 text-[13px] font-medium ' +
+                'text-slate-700 bg-white border border-slate-300 rounded-sm ' +
+                'hover:text-slate-900 hover:border-slate-400 transition-colors'
+              }
+            >
+              <span>GitHub</span>
+              <ExternalLink className= 'shrink-0 size-3.5' />
+            </a>
+
+            <Link
+              to= { `/pkg/${ pkg.id }` }
+              className= {
+                'inline-flex items-center gap-2 px-3.5 py-1.5 text-[13px] font-medium ' +
+                'text-white bg-teal-600 rounded-sm hover:bg-teal-700 transition-colors'
+              }
+            >
+              <BookOpen className= 'shrink-0 size-4' />
+              <span>Docs</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
