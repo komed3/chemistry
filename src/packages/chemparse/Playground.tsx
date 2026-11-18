@@ -3,7 +3,7 @@ import { JsonDump } from '@/src/components/ui/JsonDump';
 import { ResultGrid } from '@/src/components/ui/ResultGrid';
 import { ResultTable } from '@/src/components/ui/ResultTable';
 import { Tabs } from '@/src/components/ui/Tabs';
-import { ValidationMessage } from '@/src/components/ui/ValidationMessage';
+import { Validation } from '@/src/components/ui/Validation';
 import { formatCharge } from '@/src/lib/formatter';
 import type { ChemParseResult } from 'chemparse';
 import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, compareMany, diffMany, parse } from 'chemparse';
@@ -98,7 +98,7 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
       </div>
 
       { mode === 'validate' ? (
-        <ValidationMessage valid= { valid } methodName= 'validate()' />
+        <Validation valid= { valid } methodName= 'validate()' />
       ) : error ? (
         <ErrorMessage error= { error } label= 'Parse Error' />
       ) : data && (
@@ -222,7 +222,7 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
       { error ? (
         <ErrorMessage error= { error } label= 'Parse Error' />
       ) : mode === 'compare' ? (
-        <ValidationMessage
+        <Validation
           valid= { equal ?? false }
           methodName= { formulas.length > 2 ? 'compareMany()' : 'compare()' }
         />

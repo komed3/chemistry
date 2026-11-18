@@ -1,13 +1,13 @@
 import { AlertCircle, Check } from 'lucide-react';
 
 
-interface ValidationMessageProps {
+interface ValidationProps {
   valid: boolean;
   methodName: string;
 }
 
 
-export function ValidationMessage ( { valid, methodName }: ValidationMessageProps ) {
+export function Validation ( { valid, methodName }: ValidationProps ) {
   return (
     <div
       className= {
