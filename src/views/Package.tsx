@@ -15,9 +15,11 @@ SyntaxHighlighter.registerLanguage( 'javascript', javascript );
 SyntaxHighlighter.registerLanguage( 'markup', markup );
 SyntaxHighlighter.registerLanguage( 'typescript', typescript );
 
-const languageMap: Record< string, string > = {
-  html: 'markup', js: 'javascript', ts: 'typescript'
-} as const;
+const languageMap: Record< string, string > = { html: 'markup', js: 'javascript', ts: 'typescript' };
+
+const prismTheme = Object.fromEntries( Object.entries( oneLight ).map( ( [ selector, rules ] ) => [
+  selector, Object.fromEntries( Object.entries( rules ).filter( ( [ p ] ) => ! p.startsWith( 'background' ) ) )
+] ) );
 
 
 export function Package () {
@@ -165,9 +167,9 @@ export function Package () {
                 return highlighterLng ? (
                   <SyntaxHighlighter
                     language= { highlighterLng }
-                    style= { oneLight }
+                    style= { prismTheme }
                     PreTag= 'div'
-                    customStyle= { { margin: 0, padding: 0, background: 'transparent' } }
+                    customStyle= { { margin: 0, padding: 0 } }
                   >
                     { String( children ).replace( /\n$/, '' ) }
                   </SyntaxHighlighter>
