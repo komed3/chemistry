@@ -33,8 +33,7 @@
   }
 
   html {
-    @apply font-sans scroll-smooth antialiased text-slate-900 bg-slate-50
-      selection:text-teal-900 selection:bg-teal-100;
+    @apply font-sans scroll-smooth antialiased text-slate-900 bg-slate-50;
   }
 
   h1, h2, h3, h4 {
@@ -81,10 +80,46 @@
   @apply text-current font-black;
 }
 
+.readme a {
+  @apply underline underline-offset-2 text-teal-600;
+}
+
 .readme *:not(pre) > code {
   @apply px-1.5 py-0.5 text-sm font-mono font-medium bg-slate-200/50 rounded;
 }
 
 .readme pre {
-  @apply my-4 w-full p-4 text-sm font-mono overflow-x-auto bg-white border border-slate-200;
+  @apply my-4 w-full p-4 text-sm font-mono overflow-x-auto bg-white border border-slate-200 rounded;
+}
+
+.readme table {
+  @apply my-4 w-full table-auto border-collapse bg-white border border-slate-200;
+}
+
+.readme table tbody {
+  @apply divide-y divide-slate-200;
+}
+
+.readme th {
+  @apply px-2.5 py-1.5 text-left text-sm font-medium bg-slate-200/50 border-b border-slate-200;
+}
+
+.readme td {
+  @apply p-2.5 text-sm;
+}
+
+.readme img {
+  @apply grayscale-100 contrast-125;
+}
+
+.readme img[src*="badge"],
+.readme img[src*="shields.io"],
+.readme img[alt*="badge"] {
+  @apply inline-block mr-1 mb-3 align-middle;
+}
+
+.readme a:has( img[src*="badge"] ),
+.readme a:has( img[src*="shields.io"] ),
+.readme a:has( img[alt*="badge"] ) {
+  @apply hover:bg-transparent;
 }
