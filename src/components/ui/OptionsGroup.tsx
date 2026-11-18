@@ -1,22 +1,22 @@
-export function OptionGroup < T extends string > ( {
-  label, options, value, setValue, format
-}: {
+interface OptionGroupProps< T extends string > {
   label: string;
-  options: readonly T[];
+  options: Record< T, string >;
   value: T;
   setValue: ( value: T ) => void;
-  format?: ( value: T ) => string;
-} ) {
+}
+
+
+export function OptionGroup < T extends string > ( { label, options, value, setValue }: OptionGroupProps< T > ) {
   return (
     <div className= 'space-y-2'>
       <span className= 'block text-xs font-medium text-slate-700'>{ label }</span>
 
       <div className= 'flex w-full gap-1 p-1 bg-slate-100 border border-slate-200 rounded'>
-        { options.map( option => (
+        { Object.entries( options ).map( ( [ option, name ] ) => (
           <button
             key= { option }
             type= 'button'
-            onClick= { () => setValue( option ) }
+            onClick= { () => setValue( option as T ) }
             aria-pressed= { value === option }
             className= {
               'flex-1 px-2 py-1.5 text-xs font-medium rounded transition-colors ' +
@@ -26,7 +26,7 @@ export function OptionGroup < T extends string > ( {
               )
             }
           >
-            { format ? format( option ) : option }
+            { name as string }
           </button>
         ) ) }
       </div>
