@@ -49,7 +49,7 @@ const MULTI_PRESETS = {
 
 
 function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
-  const [ formula, setFormula ] = useState( 'CuSO4·5H2O' );
+  const [ formula, setFormula ] = useState< string >( SINGLE_PRESETS[ 0 ] );
 
   const { data, valid, error } = useMemo< SingleResult >( () => {
     try { return { data: parse( formula ), valid: true } }
