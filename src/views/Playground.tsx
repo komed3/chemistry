@@ -11,7 +11,7 @@ export function Playground () {
   if ( ! pkg || ! pkg.playground ) return <NotFound />;
 
   const Icon = pkg.icon;
-  const Playground = pkg.playground();
+  const playground = pkg.playground();
 
   return (
     <div className= 'space-y-8'>
@@ -55,6 +55,8 @@ export function Playground () {
           { pkg.tagline }
         </p>
       </div>
+
+      { playground }
     </div>
   );
 }
