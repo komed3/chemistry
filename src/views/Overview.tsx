@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 
 
-export function Home () {
+export function Overview () {
   const [ copiedId, setCopiedId ] = useState< string | null >( null );
 
   const copyInstall = ( id: string, cmd: string ) : void => {
