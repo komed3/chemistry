@@ -1,5 +1,6 @@
 import { ErrorMessage } from '@/src/components/ui/ErrorMessage';
 import { JsonDump } from '@/src/components/ui/JsonDump';
+import { ResultGrid } from '@/src/components/ui/ResultGrid';
 import { ResultTable } from '@/src/components/ui/ResultTable';
 import { Tabs } from '@/src/components/ui/Tabs';
 import { ValidationMessage } from '@/src/components/ui/ValidationMessage';
@@ -102,24 +103,12 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
         <ErrorMessage error= { error } label= 'Parse Error' />
       ) : data && (
         <>
-          <div className= 'grid grid-cols-4 gap-4'>
-            { [
-              [ 'Elements', Object.keys( data.elementCounts ).length ],
-              [ 'Atoms', Object.values( data.elementCounts ).reduce( ( sum, v ) => sum + v, 0 ).toFixed( 0 ) ],
-              [ 'Particles', Object.keys( data.particleCounts ?? {} ).length ],
-              [ 'Total Charge', formatCharge( data.charge ) ]
-            ].map( ( [ label, value ] ) => (
-              <div key= { label } className= 'py-3 px-4 bg-white border border-slate-200 rounded'>
-                <div className= 'mb-1.5 text-xs text-slate-500'>
-                  { label }
-                </div>
-
-                <div className= 'text-2xl font-semibold font-mono tabular-nums'>
-                  { value }
-                </div>
-              </div>
-            ) ) }
-          </div>
+          <ResultGrid data= { [
+            [ 'Elements', Object.keys( data.elementCounts ).length ],
+            [ 'Atoms', Object.values( data.elementCounts ).reduce( ( sum, v ) => sum + v, 0 ).toFixed( 0 ) ],
+            [ 'Particles', Object.keys( data.particleCounts ?? {} ).length ],
+            [ 'Total Charge', formatCharge( data.charge ) ]
+          ] } />
 
           { Object.keys( data.elementCounts ).length > 0 && (
             <ResultTable
