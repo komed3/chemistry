@@ -1,9 +1,10 @@
 import { ErrorMessage } from '@/src/components/ui/ErrorMessage';
 import { Tabs } from '@/src/components/ui/Tabs';
+import { ValidationMessage } from '@/src/components/ui/ValidationMessage';
 import { formatCharge } from '@/src/lib/formatter';
 import type { ChemParseResult } from 'chemparse';
 import { ELEMENT_SYMBOLS, PARTICLE_SYMBOLS, compareMany, diffMany, parse } from 'chemparse';
-import { AlertCircle, Check, Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 
@@ -94,17 +95,7 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
       </div>
 
       { mode === 'validate' ? (
-        <div
-          className= {
-            'flex items-center gap-3 p-4 text-sm bg-white border border-slate-200 rounded ' +
-            ( valid ? 'text-teal-800' : 'text-rose-800' )
-          }
-        >
-          { valid ? <Check className= 'shrink-0 size-4' /> : <AlertCircle className= 'shrink-0 size-4' /> }
-          <code className= 'font-mono font-medium'>validate()</code>
-          <span>returned</span>
-          <strong className= 'font-mono'>{ String( valid ) }</strong>
-        </div>
+        <ValidationMessage valid= { valid } methodName= 'validate()' />
       ) : error ? (
         <ErrorMessage error= { error } label= 'Parse Error' />
       ) : data && (
@@ -276,17 +267,10 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
       { error ? (
         <ErrorMessage error= { error } label= 'Parse Error' />
       ) : mode === 'compare' ? (
-        <div
-          className= {
-            'flex items-center gap-3 p-4 text-sm bg-white border border-slate-200 rounded ' +
-            ( equal ? 'text-teal-800' : 'text-rose-800' )
-          }
-        >
-          { equal ? <Check className= 'shrink-0 size-4' /> : <AlertCircle className= 'shrink-0 size-4' /> }
-          <code className= 'font-mono font-medium'>{ formulas.length > 2 ? 'compareMany()' : 'compare()' }</code>
-          <span>returned</span>
-          <strong className= 'font-mono'>{ String( equal ) }</strong>
-        </div>
+        <ValidationMessage
+          valid= { equal ?? false }
+          methodName= { formulas.length > 2 ? 'compareMany()' : 'compare()' }
+        />
       ) : diffs && (
         <pre className= 'p-4 text-sm font-mono bg-white border border-slate-200 rounded'>
           { JSON.stringify( diffs, null, 2 ) }
