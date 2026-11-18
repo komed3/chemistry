@@ -3,6 +3,7 @@ import { FormulaInput } from '@/src/components/ui/FormulaInput';
 import { JsonDump } from '@/src/components/ui/JsonDump';
 import { ResultGrid } from '@/src/components/ui/ResultGrid';
 import { Tabs } from '@/src/components/ui/Tabs';
+import { Validation } from '@/src/components/ui/Validation';
 import type { ChemicalEquation } from 'chembalance';
 import { isBalanced, parse, validate } from 'chembalance';
 import { useMemo, useState } from 'react';
@@ -47,7 +48,22 @@ function CheckEquation ( { mode }: { mode: 'isBalanced' | 'validate' } ) {
 
 
   return (
-    <></>
+    <>
+      <FormulaInput
+        mode= 'single'
+        value= { equation }
+        setValue= { setEquation }
+        presets= { PRESETS }
+        label= 'Chemical Reaction Equation'
+        placeholder= 'e.g. H2 + O2 -> H2O'
+      />
+
+      { error ? (
+        <ErrorMessage error= { error } label= 'Equation Error' />
+      ) : data !== undefined && (
+        <Validation valid= { data } methodName= { `${ mode }()` } />
+      ) }
+    </>
   );
 }
 
