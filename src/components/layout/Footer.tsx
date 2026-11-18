@@ -5,7 +5,12 @@ import { ExternalLink } from 'lucide-react';
 export function Footer () {
   return (
     <footer className= 'mt-16 bg-white border-t border-slate-200 select-none'>
-      <div className= 'flex justify-between items-center gap-12 mx-auto max-w-7xl p-6 text-xs text-slate-500'>
+      <div
+        className= {
+          'flex flex-col md:flex-row sm:justify-between items-center gap-x-4 gap-y-2 ' +
+          'md:gap-8 mx-auto max-w-7xl p-4 md:p-6 text-xs text-slate-500'
+        }
+      >
         <p>&copy; 2025–2026 Paul Köhler (komed3) — MIT License</p>
 
         <nav className= 'flex flex-wrap items-center gap-5'>
