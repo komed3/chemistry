@@ -1,4 +1,5 @@
 import { ErrorMessage } from '@/src/components/ui/ErrorMessage';
+import { JsonDump } from '@/src/components/ui/JsonDump';
 import { Tabs } from '@/src/components/ui/Tabs';
 import { ValidationMessage } from '@/src/components/ui/ValidationMessage';
 import { formatCharge } from '@/src/lib/formatter';
@@ -169,9 +170,7 @@ function Single ( { mode }: { mode: 'parse' | 'validate' } ) {
             </div>
           ) }
 
-          <pre className= 'p-4 text-sm font-mono bg-white border border-slate-200 rounded'>
-            { JSON.stringify( data, null, 2 ) }
-          </pre>
+          <JsonDump data= { data } />
         </>
       ) }
     </>
@@ -272,9 +271,7 @@ function Multi ( { mode }: { mode: 'compare' | 'diff' } ) {
           methodName= { formulas.length > 2 ? 'compareMany()' : 'compare()' }
         />
       ) : diffs && (
-        <pre className= 'p-4 text-sm font-mono bg-white border border-slate-200 rounded'>
-          { JSON.stringify( diffs, null, 2 ) }
-        </pre>
+        <JsonDump data= { diffs } />
       ) }
     </>
   );
