@@ -99,7 +99,7 @@
 }
 
 .readme pre {
-  @apply my-4 min-w-0 max-w-full w-full text-sm font-mono bg-white border
+  @apply my-4 min-w-0 max-w-full w-full p-4 text-sm font-mono bg-white border
     border-slate-200 rounded overflow-x-auto scrollbar-none;
 }
 
