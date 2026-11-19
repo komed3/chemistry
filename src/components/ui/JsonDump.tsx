@@ -19,7 +19,7 @@ export function JsonDump ( { data }: JsonDumpProps ) {
       <SyntaxHighlighter
         language= 'json'
         style= { prismTheme }
-        customStyle= { { margin: 0, padding: '1rem', minWidth: 'max-content' } }
+        customStyle= { { margin: 0, padding: '1rem', maxWidth: '100%', overflowX: 'auto' } }
       >
         { formatted }
       </SyntaxHighlighter>

@@ -90,7 +90,8 @@
 }
 
 .readme a {
-  @apply underline underline-offset-2 text-teal-600 break-all;
+  @apply underline underline-offset-2 text-teal-600;
+  overflow-wrap: anywhere;
 }
 
 .readme code:not(pre code) {

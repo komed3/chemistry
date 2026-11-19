@@ -15,7 +15,7 @@ SyntaxHighlighter.registerLanguage( 'javascript', javascript );
 SyntaxHighlighter.registerLanguage( 'markup', markup );
 SyntaxHighlighter.registerLanguage( 'typescript', typescript );
 
-const languageMap: Record< string, string > = { html: 'markup', js: 'javascript', ts: 'typescript' };
+const languageMap: Record< string, string > = { html: 'markup', js: 'javascript', ts: 'typescript' } as const;
 
 
 export function Package () {
@@ -156,13 +156,14 @@ export function Package () {
           <ReactMarkdown
             remarkPlugins= { [ remarkGfm ] }
             components= { {
-              table ( { children, ...props } ) {
+              table ( { children } ) {
                 return (
                   <div className= 'min-w-0 max-w-full overflow-x-auto'>
-                    <table { ...props }>{ children }</table>
+                    <table>{ children }</table>
                   </div>
                 );
               },
+
               code ( { className, children, ...props } ) {
                 const lng = className?.match( /language-(\w+)/ )?.[ 1 ]?.toLowerCase();
                 const highlighterLng = lng ? languageMap[ lng ] : undefined;
@@ -172,7 +173,7 @@ export function Package () {
                     language= { highlighterLng }
                     style= { prismTheme }
                     PreTag= 'div'
-                    customStyle= { { margin: 0, padding: 0, minWidth: 'max-content' } }
+                    customStyle= { { margin: 0, padding: 0, maxWidth: '100%', overflowX: 'auto' } }
                   >
                     { String( children ).replace( /\n$/, '' ) }
                   </SyntaxHighlighter>
