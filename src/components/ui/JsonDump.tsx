@@ -15,7 +15,12 @@ export function JsonDump ( { data }: JsonDumpProps ) {
   const formatted = JSON.stringify( data, null, 2 ) ?? '';
 
   return (
-    <div className= 'min-w-0 max-w-full overflow-x-auto bg-white border border-slate-200 rounded'>
+    <div
+      className= {
+        'min-w-0 max-w-full bg-white border border-slate-200 rounded ' +
+        'overflow-x-auto scrollbar-none'
+      }
+    >
       <SyntaxHighlighter
         language= 'json'
         style= { prismTheme }
