@@ -27,7 +27,7 @@ export function Package () {
   const Icon = pkg.icon;
 
   return (
-    <div className= 'flex flex-col-reverse lg:flex-row items-start gap-8 lg:gap-12'>
+    <div className= 'flex flex-col-reverse lg:flex-row items-stretch lg:items-start gap-8 lg:gap-12'>
       <aside className= 'shrink-0 w-full space-y-8 lg:w-80'>
         <div className= 'bg-white border border-slate-200 px-4 py-2'>
           <table className= 'w-full'>
@@ -113,7 +113,7 @@ export function Package () {
 
       <div className= 'flex-1 min-w-0 space-y-8'>
         <div className= 'pb-8 space-y-4 border-b border-slate-200'>
-          <div className= 'flex flex-col-reverse lg:flex-row items-stretch lg:items-start gap-8 lg:gap-12'>
+          <div className= 'flex flex-col sm:flex-row sm:justify-between items-start sm:items-start gap-4'>
             <h1 className= 'flex items-center gap-3 text-2xl sm:text-3xl font-semibold tracking-tight'>
               <Icon className= 'shrink-0 size-8 text-teal-600' />
               <span>{ pkg.name }</span>
