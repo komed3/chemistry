@@ -173,7 +173,7 @@ export function Package () {
                     language= { highlighterLng }
                     style= { prismTheme }
                     PreTag= 'div'
-                    customStyle= { { margin: 0, padding: '1rem', maxWidth: '100%', overflowX: 'auto' } }
+                    customStyle= { { margin: 0, padding: 0 } }
                   >
                     { String( children ).replace( /\n$/, '' ) }
                   </SyntaxHighlighter>
